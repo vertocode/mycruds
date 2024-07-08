@@ -44,12 +44,8 @@ export default function LoginPage() {
                     <h1 className="text-2xl font-bold text-gray-800">{loginDictionary.title}</h1>
                 </div>
                 <FormProvider methods={methods} className="space-y-6" onSubmit={onSubmit}>
-                    <div>
-                        <RHFTextField name="email" type="email" label={loginDictionary.email.label} placeholder={loginDictionary.email.placeholder} required />
-                    </div>
-                    <div>
-                        <RHFTextField name="password" type="password" label={loginDictionary.password.label} placeholder={loginDictionary.password.placeholder} required />
-                    </div>
+                    <RHFTextField name="email" type="email" label={loginDictionary.email.label} placeholder={loginDictionary.email.placeholder} required />
+                    <RHFTextField name="password" type="password" label={loginDictionary.password.label} placeholder={loginDictionary.password.placeholder} required />
                     <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         {loginDictionary.submitLabel}
                     </Button>
