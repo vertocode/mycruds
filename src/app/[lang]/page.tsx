@@ -20,7 +20,7 @@ export default function LoginPage() {
     })
 
     return (
-        <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div className="bg-gray-100 min-h-[90vh] flex items-center justify-center">
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-800">{login.title}</h1>

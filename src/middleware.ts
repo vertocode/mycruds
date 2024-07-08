@@ -11,7 +11,7 @@ function getLocale(request: NextRequest) {
 }
 
 export function middleware(request: NextRequest) {
-    const pathname = request.nextUrl.pathname
+    const {pathname} = request.nextUrl
     const params = request.nextUrl.search
 
     if (pathname.includes('/images') || pathname.includes('favicon')) {
