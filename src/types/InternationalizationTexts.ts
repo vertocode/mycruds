@@ -12,5 +12,10 @@ export interface InternationalizationTexts {
         submitLabel: string
         dontHaveAccountYet: string
         createAccount: string
+        feedback: {
+            success: string
+            userNotFound: string
+            error: string
+        }
     }
 }

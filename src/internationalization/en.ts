@@ -13,6 +13,11 @@ export const en: InternationalizationTexts = {
         },
         submitLabel: 'Login',
         dontHaveAccountYet: 'Don\'t have an account yet?',
-        createAccount: 'Sign up'
+        createAccount: 'Sign up',
+        feedback: {
+            success: 'Login success',
+            userNotFound: 'User not found, check your credentials',
+            error: 'Login failed'
+        }
     }
 }

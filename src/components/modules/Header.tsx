@@ -26,7 +26,7 @@ export const Header = () => {
                 <div className="flex justify-between items-center py-1">
                     <div className="flex-shrink-0">
                         <Link href={'/'}>
-                            <Image width={100} height={40} className="h-8 w-auto" src="/logo.png" alt="Logo" />
+                            <Image width={100} height={40} className="h-8 w-auto" src="https://i.imgur.com/QpVjcUv.png" alt="Logo" />
                         </Link>
                     </div>
                     <div>

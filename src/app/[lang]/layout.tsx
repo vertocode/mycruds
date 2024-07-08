@@ -5,7 +5,7 @@ import { PreLoadLanguage } from '@/components/modules/PreLoadLanguage'
 import {AvailableLanguages} from "@/types/Language"
 
 interface LayoutProps {
-    children: React.ReactNode,
+    children: React.ReactNode
     params: {
         lang: AvailableLanguages
     }

@@ -13,6 +13,11 @@ export const pt: InternationalizationTexts = {
         },
         submitLabel: 'Entrar',
         dontHaveAccountYet: 'Ainda não possui uma conta?',
-        createAccount: 'Cadastrar-se'
+        createAccount: 'Cadastrar-se',
+        feedback: {
+            success: 'Login efetuado com sucesso',
+            userNotFound: 'Usuário não encontrado, verifique suas credenciais',
+            error: 'Falha ao efetuar login'
+        }
     }
 }

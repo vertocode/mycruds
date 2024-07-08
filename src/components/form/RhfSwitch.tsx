@@ -1,16 +1,17 @@
 import { useFormContext, Controller } from 'react-hook-form'
 // @mui
+import Switch from '@mui/material/Switch'
 import FormHelperText from '@mui/material/FormHelperText'
-import Slider, { SliderProps } from '@mui/material/Slider'
+import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
 
 // ----------------------------------------------------------------------
 
-type Props = SliderProps & {
+interface Props extends Omit<FormControlLabelProps, 'control'> {
   name: string;
   helperText?: React.ReactNode;
-};
+}
 
-export default function RHFSlider({ name, helperText, ...other }: Props) {
+export default function RhfSwitch({ name, helperText, ...other }: Props) {
   const { control } = useFormContext()
 
   return (
@@ -18,13 +19,13 @@ export default function RHFSlider({ name, helperText, ...other }: Props) {
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <>
-          <Slider {...field} valueLabelDisplay="auto" {...other} />
+        <div>
+          <FormControlLabel control={<Switch {...field} checked={field.value} />} {...other} />
 
           {(!!error || helperText) && (
             <FormHelperText error={!!error}>{error ? error?.message : helperText}</FormHelperText>
           )}
-        </>
+        </div>
       )}
     />
   )

@@ -17,7 +17,7 @@ interface RHFCheckboxProps extends Omit<FormControlLabelProps, 'control'> {
   helperText?: React.ReactNode;
 }
 
-export function RHFCheckbox({ name, helperText, ...other }: RHFCheckboxProps) {
+export function RhfCheckbox({ name, helperText, ...other }: RHFCheckboxProps) {
   const { control } = useFormContext()
 
   return (

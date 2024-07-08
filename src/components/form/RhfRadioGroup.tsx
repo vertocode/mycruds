@@ -17,7 +17,7 @@ type Props = RadioGroupProps & {
   helperText?: React.ReactNode;
 };
 
-export default function RHFRadioGroup({
+export default function RhfRadioGroup({
   row,
   name,
   label,

@@ -17,7 +17,7 @@ interface Props<
   helperText?: React.ReactNode;
 }
 
-export default function RHFAutocomplete<
+export default function RhfAutocomplete<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
