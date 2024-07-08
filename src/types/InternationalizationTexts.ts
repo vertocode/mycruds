@@ -1,4 +1,9 @@
 export interface InternationalizationTexts {
+    header: {
+        user: {
+            logout: string
+        }
+    }
     login: {
         title: string
         email: {

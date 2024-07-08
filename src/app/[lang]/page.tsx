@@ -5,9 +5,10 @@ import FormProvider, {RHFTextField} from "@/components/form";
 import {Button} from "@mui/material";
 import Link from "next/link";
 import {getDictionary} from "@/internationalization/dictionary";
-import { useAppSelector } from '@/store/hooks'
+import {useAppDispatch, useAppSelector} from '@/store/hooks'
 import {login} from "@/api/auth";
 import { useSnackbar } from '@/components/elements/Snackbar'
+import {initializeUser} from "@/store/user/userSlice";
 
 
 export default function LoginPage() {
@@ -16,16 +17,16 @@ export default function LoginPage() {
 
     const lang = useAppSelector(state => state.config.lang)
     const { login: loginDictionary } = getDictionary(lang)
+    const dispatch = useAppDispatch()
 
     const { enqueueSnackbar } = useSnackbar()
 
     const onSubmit = handleSubmit(async (e) => {
-        console.log(getValues())
-
         try {
             const { email, password } = getValues()
             const response = await login(email, password)
             if (response?._id) {
+                dispatch(initializeUser(response))
                 enqueueSnackbar(loginDictionary.feedback.success, { variant: 'success' })
             } else if (response?.errorCode === 'user_not_found') {
                 enqueueSnackbar(loginDictionary.feedback.userNotFound, { variant: 'error' })

@@ -1,6 +1,11 @@
 import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 
 export const pt: InternationalizationTexts = {
+    header: {
+      user: {
+          logout: 'Sair'
+      }
+    },
     login: {
         title: 'Entre em sua conta',
         email: {

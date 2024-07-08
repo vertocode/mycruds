@@ -1,6 +1,6 @@
 import Providers from '@/store/provider'
 
-import { Header } from '@/components/modules/Header'
+import { Index } from '@/components/modules/Header'
 import { PreLoadLanguage } from '@/components/modules/PreLoadLanguage'
 import {AvailableLanguages} from "@/types/Language"
 
@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: LayoutProps) {
         <>
             <PreLoadLanguage />
             <Providers>
-                <Header />
+                <Index />
                 {children}
             </Providers>
         </>
