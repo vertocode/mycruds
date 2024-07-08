@@ -6,6 +6,8 @@ import Link from "next/link";
 import {useAppDispatch} from "@/store/hooks";
 import {setLang} from "@/store/config/configSlice";
 import {AvailableLanguages} from "@/types/Language";
+import BRFlag from '@/assets/br-flag.png'
+import USFlag from '@/assets/us-flag.png'
 
 export const Header = () => {
     const [language, setLanguage] = useState<AvailableLanguages>('en');
@@ -32,8 +34,13 @@ export const Header = () => {
                     <div>
                         <button
                             onClick={toggleLanguage}
-                            className="text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium rounded-md text-sm px-4 py-2"
+                            className="text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium rounded-md text-sm px-4 py-2 flex gap-2"
                         >
+                            {language === 'pt' ? (
+                                <Image src={BRFlag} alt="BR Flag" width={20} height={20} />
+                            ) : (
+                                <Image src={USFlag} alt="US Flag" width={20} height={20} />
+                            )}
                             {language.toUpperCase()}
                         </button>
                     </div>
