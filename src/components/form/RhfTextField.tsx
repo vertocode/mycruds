@@ -1,6 +1,9 @@
 import { useFormContext, Controller } from 'react-hook-form'
 // @mui
 import TextField, { TextFieldProps } from '@mui/material/TextField'
+import {useState} from "react";
+import Iconify from "@/components/elements/Iconify";
+import {InputAdornment} from "@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -11,6 +14,7 @@ type Props = TextFieldProps & {
 
 export default function RhfTextField({ name, helperText, type, dataTestId, ...other }: Props) {
   const { control } = useFormContext()
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   return (
     <Controller
@@ -20,7 +24,7 @@ export default function RhfTextField({ name, helperText, type, dataTestId, ...ot
         <TextField
           {...field}
           fullWidth
-          type={type}
+          type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
           data-testid={dataTestId}
           value={(type === 'number' && field.value === 0) ? '' : field.value ?? ''}
           onChange={(event) => {
@@ -29,6 +33,17 @@ export default function RhfTextField({ name, helperText, type, dataTestId, ...ot
             } else {
               field.onChange(event.target.value)
             }
+          }}
+          InputProps={{
+              endAdornment: (() => {
+                 if (type === 'password') {
+                     return (
+                        <InputAdornment position="end" className="cursor-pointer">
+                            <Iconify icon={showPassword ? 'mdi:eye' : 'mdi:eye-off-outline'} onClick={() => setShowPassword(!showPassword)} />
+                        </InputAdornment>
+                     )
+                 }
+              })()
           }}
           error={!!error}
           helperText={error ? error?.message : helperText}

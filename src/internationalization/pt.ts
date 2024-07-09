@@ -8,14 +8,6 @@ export const pt: InternationalizationTexts = {
     },
     login: {
         title: 'Entre em sua conta',
-        email: {
-            label: 'E-mail',
-            placeholder: 'Digite seu e-mail'
-        },
-        password: {
-            label: 'Senha',
-            placeholder: 'Digite sua senha'
-        },
         submitLabel: 'Entrar',
         dontHaveAccountYet: 'Ainda não possui uma conta?',
         createAccount: 'Cadastrar-se',
@@ -24,5 +16,39 @@ export const pt: InternationalizationTexts = {
             userNotFound: 'Usuário não encontrado, verifique suas credenciais',
             error: 'Falha ao efetuar login'
         }
+    },
+    signUp: {
+        title: 'Crie sua conta',
+        submitLabel: 'Cadastrar',
+        alreadyHaveAccount: 'Já possui uma conta?',
+        login: 'Entrar',
+        feedback: {
+            success: 'Cadastro efetuado com sucesso',
+            error: 'Falha ao efetuar cadastro'
+        }
+    },
+    name: {
+        label: 'Nome',
+        placeholder: 'Digite seu nome',
+        required: 'Nome é obrigatório'
+    },
+    email: {
+        label: 'E-mail',
+        placeholder: 'Digite seu e-mail',
+        required: 'E-mail é obrigatório',
+        shouldBeValid: 'E-mail deve ser um endereço de e-mail válido'
+    },
+    password: {
+        label: 'Senha',
+        placeholder: 'Digite sua senha',
+        required: 'Senha é obrigatória',
+        shouldInclude6Chars: 'Senha deve incluir pelo menos 6 caracteres'
+    },
+    repeatPassword: {
+        label: 'Repita a senha',
+        placeholder: 'Digite sua senha novamente',
+        required: 'Senha é obrigatória',
+        shouldInclude6Chars: 'Senha deve incluir pelo menos 6 caracteres',
+        shouldMatchPassword: 'As senhas devem corresponder'
     }
 }

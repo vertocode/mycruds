@@ -8,14 +8,6 @@ export const en: InternationalizationTexts = {
     },
     login: {
         title: 'Sign in',
-        email: {
-            label: 'E-mail',
-            placeholder: 'Type your e-mail'
-        },
-        password: {
-            label: 'Password',
-            placeholder: 'Type your password'
-        },
         submitLabel: 'Login',
         dontHaveAccountYet: 'Don\'t have an account yet?',
         createAccount: 'Sign up',
@@ -24,5 +16,39 @@ export const en: InternationalizationTexts = {
             userNotFound: 'User not found, check your credentials',
             error: 'Login failed'
         }
-    }
+    },
+    signUp: {
+        title: 'Create your account',
+        submitLabel: 'Sign up',
+        alreadyHaveAccount: 'Already have an account?',
+        login: 'Sign in',
+        feedback: {
+            success: 'Sign up success',
+            error: 'Sign up failed'
+        }
+    },
+    email: {
+        label: 'E-mail',
+        placeholder: 'Type your e-mail',
+        required: 'E-mail is required',
+        shouldBeValid: 'E-mail must be a valid e-mail address'
+    },
+    password: {
+        label: 'Password',
+        placeholder: 'Type your password',
+        required: 'Password is required',
+        shouldInclude6Chars: 'Password must include at least 6 characters'
+    },
+    repeatPassword: {
+        label: 'Repeat password',
+        placeholder: 'Type your password again',
+        required: 'Password is required',
+        shouldInclude6Chars: 'Password must include at least 6 characters',
+        shouldMatchPassword: 'Passwords must match'
+    },
+    name: {
+        label: 'Name',
+        placeholder: 'Type your name',
+        required: 'Name is required'
+    },
 }
