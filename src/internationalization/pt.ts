@@ -24,13 +24,15 @@ export const pt: InternationalizationTexts = {
         login: 'Entrar',
         feedback: {
             success: 'Cadastro efetuado com sucesso',
+            userAlreadyExists: 'Usuário já existe',
             error: 'Falha ao efetuar cadastro'
         }
     },
     name: {
         label: 'Nome',
         placeholder: 'Digite seu nome',
-        required: 'Nome é obrigatório'
+        required: 'Nome é obrigatório',
+        shouldInclude3Chars: 'Nome deve incluir pelo menos 3 caracteres'
     },
     email: {
         label: 'E-mail',

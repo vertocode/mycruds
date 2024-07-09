@@ -18,7 +18,7 @@ export default function SignUpPage() {
     const dictionary = getDictionary(lang)
 
     const schema = Yup.object().shape({
-        name: Yup.string().required(dictionary.name.required),
+        name: Yup.string().required(dictionary.name.required).min(3, dictionary.name.shouldInclude3Chars),
         email: Yup.string().required(dictionary.email.required).email(dictionary.email.shouldBeValid),
         password: Yup.string().required(dictionary.password.required).min(6, dictionary.password.shouldInclude6Chars),
         repeatPassword: Yup.string().required(dictionary.repeatPassword.required).oneOf([Yup.ref('password')], dictionary.repeatPassword.shouldMatchPassword)
@@ -28,7 +28,7 @@ export default function SignUpPage() {
         mode: 'onChange',
         resolver: yupResolver(schema)
     })
-    const { getValues,  handleSubmit } = methods
+    const { getValues,  handleSubmit, setError, clearErrors } = methods
 
 
     const dispatch = useAppDispatch()
@@ -36,12 +36,17 @@ export default function SignUpPage() {
     const { enqueueSnackbar } = useSnackbar()
 
     const onSubmit = handleSubmit(async (e) => {
+        clearErrors()
         try {
             const { email, password, name } = getValues()
             const response = await register({ email, password, name })
+            console.log(response)
             if (response?._id) {
                 dispatch(initializeUser(response))
                 enqueueSnackbar(dictionary.signUp.feedback.success, { variant: 'success' })
+            } else if (response?.errorCode === 'user_already_exists') {
+                enqueueSnackbar(dictionary.signUp.feedback.userAlreadyExists, { variant: 'error' })
+                setError('email', { message: dictionary.signUp.feedback.userAlreadyExists })
             } else {
                 throw new Error(`Unexpected error: ${response}`)
             }

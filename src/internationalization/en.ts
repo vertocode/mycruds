@@ -24,6 +24,7 @@ export const en: InternationalizationTexts = {
         login: 'Sign in',
         feedback: {
             success: 'Sign up success',
+            userAlreadyExists: 'User already exists',
             error: 'Sign up failed'
         }
     },
@@ -49,6 +50,7 @@ export const en: InternationalizationTexts = {
     name: {
         label: 'Name',
         placeholder: 'Type your name',
-        required: 'Name is required'
+        required: 'Name is required',
+        shouldInclude3Chars: 'Name must include at least 3 characters'
     },
 }

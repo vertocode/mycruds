@@ -22,6 +22,7 @@ export interface InternationalizationTexts {
         login: string
         feedback: {
             success: string
+            userAlreadyExists: string
             error: string
         }
     },
@@ -29,6 +30,7 @@ export interface InternationalizationTexts {
         label: string
         placeholder: string
         required: string
+        shouldInclude3Chars: string
     }
     email: {
         label: string
