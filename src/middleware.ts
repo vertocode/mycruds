@@ -21,6 +21,10 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL(`/crud/new`, request.url))
     }
 
+    if (!user && (!pathname.includes('/signin') && !pathname.includes('signup'))) {
+        return NextResponse.redirect(new URL(`/signin`, request.url))
+    }
+
     if (pathname.includes('/images') || pathname.includes('favicon')) {
         return
     }
