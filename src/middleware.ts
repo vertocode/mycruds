@@ -1,7 +1,7 @@
 import {NextRequest, NextResponse} from 'next/server'
 import {match} from '@formatjs/intl-localematcher'
 
-const locales = ['en', 'pt', 'es']
+const locales = ['en', 'pt']
 
 function getLocale(request: NextRequest) {
     const acceptLanguages = request.headers.get('accept-language')
@@ -12,17 +12,22 @@ function getLocale(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
     const {pathname} = request.nextUrl
+    const { cookies } = request
     const params = request.nextUrl.search
+    const user = cookies.get('user')
+    const locale = getLocale(request)
+
+    if (user && (pathname.includes('/signin') || pathname.includes('signup'))) {
+        return NextResponse.redirect(new URL(`/crud/new`, request.url))
+    }
 
     if (pathname.includes('/images') || pathname.includes('favicon')) {
         return
     }
-    const pathnameIsMissingLocale = locales.every(
-        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-    )
+
+    const pathnameIsMissingLocale = locales.every(locale => !pathname.includes(`/${locale}`))
 
     if (pathnameIsMissingLocale) {
-        const locale = getLocale(request)
         return NextResponse.redirect(new URL(`/${locale}/${pathname}${params}`, request.url))
     }
 

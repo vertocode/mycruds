@@ -4,6 +4,7 @@ import { Index } from '@/components/modules/Header'
 import { PreLoadLanguage } from '@/components/modules/PreLoadLanguage'
 import {AvailableLanguages} from "@/types/Language"
 import {Footer} from "@/components/modules/Footer";
+import {PreLoadUser} from "@/components/modules/PreLoadUser";
 
 interface LayoutProps {
     children: React.ReactNode
@@ -17,6 +18,7 @@ export default async function RootLayout({ children }: LayoutProps) {
         <>
             <PreLoadLanguage />
             <Providers>
+                <PreLoadUser />
                 <Index />
                 {children}
             </Providers>

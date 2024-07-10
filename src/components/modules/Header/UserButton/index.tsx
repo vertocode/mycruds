@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {logout} from "@/store/user/userSlice";
 import {getDictionary} from "@/internationalization/dictionary";
+import {useRouter} from "next/navigation";
 
 export const UserButton = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
@@ -13,6 +14,7 @@ export const UserButton = () => {
     const { user } = useAppSelector(state => state.user)
     const { lang } = useAppSelector(state => state.config)
     const dispatch = useAppDispatch()
+    const router = useRouter()
 
     const { header: { user: userDictionary } } = getDictionary(lang)
 
@@ -20,6 +22,7 @@ export const UserButton = () => {
 
     const logoutAction = useCallback(() => {
         dispatch(logout())
+        router.push(`/signin`)
         setIsMenuOpen(false)
     }, [dispatch])
 
