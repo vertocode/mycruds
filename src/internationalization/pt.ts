@@ -52,5 +52,12 @@ export const pt: InternationalizationTexts = {
         required: 'Senha é obrigatória',
         shouldInclude6Chars: 'Senha deve incluir pelo menos 6 caracteres',
         shouldMatchPassword: 'As senhas devem corresponder'
+    },
+    crud: {
+        new: {
+            title: (username: string) => `Olá, ${username}! Percebi que ainda não possui um crud criado, que tal criar um agora mesmo? 🚀`,
+            description: 'Nosso sistema de cruds é muito simples e fácil de usar, você pode criar, editar e excluir cruds de forma muito intuitiva e rápida!',
+            createNow: 'Criar agora'
+        }
     }
 }

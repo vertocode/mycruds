@@ -50,5 +50,12 @@ export interface InternationalizationTexts {
         required: string
         shouldInclude6Chars: string
         shouldMatchPassword: string
+    },
+    crud: {
+        new: {
+            title: (username: string) => string
+            description: string
+            createNow: string
+        }
     }
 }

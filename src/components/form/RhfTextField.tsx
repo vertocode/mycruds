@@ -9,10 +9,11 @@ import {InputAdornment} from "@mui/material";
 
 type Props = TextFieldProps & {
   name: string;
+  className?: string;
   dataTestId?: string;
 };
 
-export default function RhfTextField({ name, helperText, type, dataTestId, ...other }: Props) {
+export default function RhfTextField({ name, helperText, type, dataTestId, className, ...other }: Props) {
   const { control } = useFormContext()
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
@@ -24,6 +25,7 @@ export default function RhfTextField({ name, helperText, type, dataTestId, ...ot
         <TextField
           {...field}
           fullWidth
+          className={className}
           type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
           data-testid={dataTestId}
           value={(type === 'number' && field.value === 0) ? '' : field.value ?? ''}

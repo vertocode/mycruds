@@ -53,4 +53,11 @@ export const en: InternationalizationTexts = {
         required: 'Name is required',
         shouldInclude3Chars: 'Name must include at least 3 characters'
     },
+    crud: {
+        new: {
+            title: (username: string) => `Hello, ${username}! I noticed you don't have a crud created yet, how about creating one now? 🚀`,
+            description: 'Our crud system is very simple and easy to use, you can create, edit and delete cruds in a very intuitive and fast way!',
+            createNow: 'Create now'
+        }
+    }
 }

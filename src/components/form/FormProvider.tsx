@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode;
   methods: UseFormReturn<any>;
   onSubmit?: VoidFunction;
-  className: string
+  className?: string
 };
 
 export default function FormProvider({ children, onSubmit, methods, className }: Props) {
