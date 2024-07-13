@@ -22,7 +22,7 @@ type RHFSelectProps = TextFieldProps & {
   PaperPropsSx?: SxProps<Theme>;
 };
 
-export function RhfSelect({
+export function RHFSelect({
   name,
   native,
   maxHeight = 220,

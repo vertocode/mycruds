@@ -1,6 +1,8 @@
 import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 
 export const en: InternationalizationTexts = {
+    delete: 'Delete',
+    addOption: 'Add option',
     header: {
         user: {
             logout: 'Logout'
@@ -51,13 +53,30 @@ export const en: InternationalizationTexts = {
         label: 'Name',
         placeholder: 'Type your name',
         required: 'Name is required',
-        shouldInclude3Chars: 'Name must include at least 3 characters'
+        shouldInclude3Chars: 'Name must include at least 3 characters',
+        shouldInclude25Chars: 'Name must include at most 25 characters'
     },
     crud: {
+        crudName: 'Crud Name',
+        fieldName: 'Field Name',
+        fieldType: 'Field Type',
+        addNewField: 'Add new field',
+        typeNewOption: 'Type a new option',
+        fieldTypes: {
+            options: 'Options',
+            multipleOptions: 'Multiple Options',
+            number: 'Number',
+            text: 'Text',
+            date: 'Date'
+        },
+        fieldOptions: 'Field Options',
         new: {
             title: (username: string) => `Hello, ${username}! I noticed you don't have a crud created yet, how about creating one now? 🚀`,
             description: 'Our crud system is very simple and easy to use, you can create, edit and delete cruds in a very intuitive and fast way!',
-            createNow: 'Create now'
+            createNow: 'Create now',
+            createCrud: 'Create Crud',
+            chooseCrudName: 'First we need to choose a name for your entire Crud, this name will be used in the creation, editing, and listing form. A tip is to choose a name that represents the entire Crud, for example, if you are creating a Crud to manage clients, you can choose the name "Clients".',
+            startFillingFields: 'Now you can start filling in the fields of your Crud, you can add as many fields as you want, just click on the "Add Field" button and fill in the information.',
         }
     }
 }

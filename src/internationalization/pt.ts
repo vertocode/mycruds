@@ -1,6 +1,8 @@
 import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 
 export const pt: InternationalizationTexts = {
+    delete: 'Deletar',
+    addOption: 'Adicionar Opção',
     header: {
       user: {
           logout: 'Sair'
@@ -32,7 +34,8 @@ export const pt: InternationalizationTexts = {
         label: 'Nome',
         placeholder: 'Digite seu nome',
         required: 'Nome é obrigatório',
-        shouldInclude3Chars: 'Nome deve incluir pelo menos 3 caracteres'
+        shouldInclude3Chars: 'Nome deve incluir pelo menos 3 caracteres',
+        shouldInclude25Chars: 'Nome deve incluir no máximo 25 caracteres'
     },
     email: {
         label: 'E-mail',
@@ -54,10 +57,26 @@ export const pt: InternationalizationTexts = {
         shouldMatchPassword: 'As senhas devem corresponder'
     },
     crud: {
+        crudName: 'Nome do Crud',
+        fieldName: 'Nome do Campo',
+        fieldType: 'Tipo do Campo',
+        typeNewOption: 'Digite uma nova opção',
+        fieldTypes: {
+            text: 'Texto',
+            number: 'Número',
+            options: 'Opções',
+            multipleOptions: 'Opções Múltiplas',
+            date: 'Data'
+        },
+        addNewField: 'Adicionar novo campo',
+        fieldOptions: 'Opções',
         new: {
             title: (username: string) => `Olá, ${username}! Percebi que ainda não possui um crud criado, que tal criar um agora mesmo? 🚀`,
             description: 'Nosso sistema de cruds é muito simples e fácil de usar, você pode criar, editar e excluir cruds de forma muito intuitiva e rápida!',
-            createNow: 'Criar agora'
+            createNow: 'Criar agora',
+            createCrud: 'Criar Crud',
+            chooseCrudName: 'Primeiro, precisamos de um nome para todo o seu crud. Este nome será exibido em todos os lugares do seu crud como criações, edições e exclusões. Uma dica é escolher um nome que represente bem o que você deseja fazer com este crud, por exemplo administrar clientes poderia ser "Clientes".',
+            startFillingFields: 'Agora que você já escolheu um nome para o seu crud, vamos começar a preencher os campos que deseja que este crud tenha. Você pode adicionar quantos campos desejar, basta clicar em "Adicionar Novo Campo" e preencher as informações necessárias de cada campo.',
         }
     }
 }

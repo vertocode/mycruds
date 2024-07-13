@@ -1,4 +1,6 @@
 export interface InternationalizationTexts {
+    delete: string
+    addOption: string
     header: {
         user: {
             logout: string
@@ -31,6 +33,7 @@ export interface InternationalizationTexts {
         placeholder: string
         required: string
         shouldInclude3Chars: string
+        shouldInclude25Chars: string
     }
     email: {
         label: string
@@ -52,10 +55,26 @@ export interface InternationalizationTexts {
         shouldMatchPassword: string
     },
     crud: {
+        crudName: string
+        fieldName: string
+        fieldType: string
+        addNewField: string
+        fieldOptions: string
+        typeNewOption: string
+        fieldTypes: {
+            text: string
+            number: string
+            options: string
+            multipleOptions: string
+            date: string
+        }
         new: {
             title: (username: string) => string
             description: string
-            createNow: string
+            createNow: string,
+            createCrud: string
+            chooseCrudName: string
+            startFillingFields: string
         }
     }
 }

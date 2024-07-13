@@ -1,4 +1,4 @@
-export * from './RhfSelect'
+export * from './RHFSelect'
 export * from './RhfCheckbox'
 
 export { default as RHFSwitch } from './RhfSwitch'
