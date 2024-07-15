@@ -62,6 +62,7 @@ export const pt: InternationalizationTexts = {
         fieldName: 'Nome do Campo',
         fieldType: 'Tipo do Campo',
         typeNewOption: 'Digite uma nova opção',
+        viewCrudForm: 'Visualizar formulário do crud',
         fieldTypes: {
             text: 'Texto',
             number: 'Número',

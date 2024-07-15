@@ -4,7 +4,6 @@ import {RhfCheckbox, RHFSelect, RHFTextField} from "@/components/form";
 import {Button} from "@/components/elements/Button";
 import {useCallback, useMemo, useState} from "react";
 import MenuItem from "@mui/material/MenuItem";
-import TextField from "@mui/material/TextField";
 import Chip from "@mui/material/Chip";
 import {AddOption} from "@/components/modules/Cruds/New/CrudForm/AddDynamicField/Add0ption";
 
@@ -91,7 +90,10 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
 
     return (
         <div className="bg-blue-100 text-gray-800 p-5 rounded-2xl">
-            <p className="mb-4">{dictionary.crud.new.startFillingFields}</p>
+            <div className="flex justify-between">
+                <p className="mb-4">{dictionary.crud.new.startFillingFields}</p>
+                <Button className="bg-green-200 text-green-800 hover:bg-green-300 min-w-44 max-h-16 mb-2">{dictionary.crud.viewCrudForm}</Button>
+            </div>
             {DynamicFields}
             <Button
                 className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white w-full"

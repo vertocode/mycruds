@@ -62,6 +62,7 @@ export const en: InternationalizationTexts = {
         fieldName: 'Field Name',
         fieldType: 'Field Type',
         addNewField: 'Add new field',
+        viewCrudForm: 'View crud form',
         typeNewOption: 'Type a new option',
         fieldTypes: {
             options: 'Options',

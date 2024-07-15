@@ -62,6 +62,7 @@ export interface InternationalizationTexts {
         addNewField: string
         fieldOptions: string
         typeNewOption: string
+        viewCrudForm: string
         fieldTypes: {
             text: string
             number: string
