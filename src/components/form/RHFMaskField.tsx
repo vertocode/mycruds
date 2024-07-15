@@ -12,7 +12,7 @@ type Props = TextFieldProps & {
   dataTestId?: string;
 };
 
-export default function RhfMaskField({ name, mask, helperText, type, dataTestId, ...other }: Props) {
+export default function RHFMaskField({ name, mask, helperText, type, dataTestId, ...other }: Props) {
   const { control } = useFormContext()
 
   return (

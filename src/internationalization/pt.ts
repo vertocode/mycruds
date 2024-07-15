@@ -68,7 +68,9 @@ export const pt: InternationalizationTexts = {
             number: 'Número',
             options: 'Opções',
             multipleOptions: 'Opções Múltiplas',
-            date: 'Data'
+            date: 'Data',
+            cpf: 'CPF',
+            cnpj: 'CNPJ'
         },
         addNewField: 'Adicionar novo campo',
         fieldOptions: 'Opções',

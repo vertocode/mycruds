@@ -69,7 +69,9 @@ export const en: InternationalizationTexts = {
             multipleOptions: 'Multiple Options',
             number: 'Number',
             text: 'Text',
-            date: 'Date'
+            date: 'Date',
+            cpf: 'CPF',
+            cnpj: 'CNPJ'
         },
         fieldOptions: 'Field Options',
         new: {

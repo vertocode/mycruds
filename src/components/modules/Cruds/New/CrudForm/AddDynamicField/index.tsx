@@ -6,6 +6,7 @@ import {useCallback, useMemo, useState} from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Chip from "@mui/material/Chip";
 import {AddOption} from "@/components/modules/Cruds/New/CrudForm/AddDynamicField/Add0ption";
+import {FieldType} from "@/types/Field";
 
 type Field = {
     status: 'new'
@@ -20,6 +21,7 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
     const {lang} = useAppSelector(state => state.config)
     const dictionary = getDictionary(lang)
     const [fields, setFields] = useState<Field[]>([{ status: 'new' }])
+    const [showPreviewModal, setShowPreviewModal] = useState<boolean>(false)
 
     const handleAddField = useCallback(() => {
         setFields(prev => [...prev, { status: 'new' }])
@@ -55,11 +57,13 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
                     </div>
                     <div className="flex w-72">
                         <RHFSelect name={`fields[${index}].type`} label={dictionary.crud.fieldType} required>
-                            <MenuItem value="text">{dictionary.crud.fieldTypes.text}</MenuItem>
-                            <MenuItem value="number">{dictionary.crud.fieldTypes.number}</MenuItem>
-                            <MenuItem value="options">{dictionary.crud.fieldTypes.options}</MenuItem>
-                            <MenuItem value="multipleOptions">{dictionary.crud.fieldTypes.multipleOptions}</MenuItem>
-                            <MenuItem value="date">{dictionary.crud.fieldTypes.date}</MenuItem>
+                            <MenuItem value={FieldType.TEXT}>{dictionary.crud.fieldTypes.text}</MenuItem>
+                            <MenuItem value={FieldType.NUMBER}>{dictionary.crud.fieldTypes.number}</MenuItem>
+                            <MenuItem value={FieldType.OPTIONS}>{dictionary.crud.fieldTypes.options}</MenuItem>
+                            <MenuItem value={FieldType.MULTIPLE_OPTIONS}>{dictionary.crud.fieldTypes.multipleOptions}</MenuItem>
+                            <MenuItem value={FieldType.DATE}>{dictionary.crud.fieldTypes.date}</MenuItem>
+                            <MenuItem value={FieldType.CPF}>{dictionary.crud.fieldTypes.cpf}</MenuItem>
+                            <MenuItem value={FieldType.CNPJ}>{dictionary.crud.fieldTypes.cnpj}</MenuItem>
                         </RHFSelect>
                     </div>
                     {showOptionFields && <AddOption setValue={(typedOption) => setValue(`fields[${index}].options`, [...options, typedOption])} />}
@@ -92,7 +96,6 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
         <div className="bg-blue-100 text-gray-800 p-5 rounded-2xl">
             <div className="flex justify-between">
                 <p className="mb-4">{dictionary.crud.new.startFillingFields}</p>
-                <Button className="bg-green-200 text-green-800 hover:bg-green-300 min-w-44 max-h-16 mb-2">{dictionary.crud.viewCrudForm}</Button>
             </div>
             {DynamicFields}
             <Button

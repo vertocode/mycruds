@@ -10,8 +10,11 @@ import {getDictionary} from "@/internationalization/dictionary";
 import {CrudName} from "@/components/modules/Cruds/New/CrudForm/CrudName";
 import {Button} from "@/components/elements/Button";
 import Iconify from "@/components/elements/Iconify";
+import {useState} from "react";
+import {CrudFormPreview} from "@/components/modules/Cruds/New/CrudForm/CrudFormPreview";
 
 export const CrudForm = () => {
+    const [showPreviewForm, setShowPreviewForm] = useState<boolean>(false)
     const {lang} = useAppSelector(state => state.config)
     const dictionary = getDictionary(lang)
     const schema = yup.object().shape({
@@ -31,6 +34,7 @@ export const CrudForm = () => {
                 <h1 className="mb-4 text-3xl font-bold text-gray-700">{dictionary.crud.new.createCrud}</h1>
                 <CrudName />
                 <AddDynamicField methods={methods}/>
+                <CrudFormPreview methods={methods}/>
             </div>
             <Button
                 type="submit"

@@ -69,6 +69,8 @@ export interface InternationalizationTexts {
             options: string
             multipleOptions: string
             date: string
+            cpf: string
+            cnpj: string
         }
         new: {
             title: (username: string) => string
