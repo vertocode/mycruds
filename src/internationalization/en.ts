@@ -3,6 +3,7 @@ import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 export const en: InternationalizationTexts = {
     delete: 'Delete',
     addOption: 'Add option',
+    required: 'Required',
     header: {
         user: {
             logout: 'Logout'

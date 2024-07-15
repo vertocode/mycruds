@@ -1,6 +1,7 @@
 export interface InternationalizationTexts {
     delete: string
     addOption: string
+    required: string
     header: {
         user: {
             logout: string

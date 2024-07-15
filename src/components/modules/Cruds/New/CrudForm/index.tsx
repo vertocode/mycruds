@@ -8,6 +8,8 @@ import {AddDynamicField} from "@/components/modules/Cruds/New/CrudForm/AddDynami
 import {useAppSelector} from "@/store/hooks";
 import {getDictionary} from "@/internationalization/dictionary";
 import {CrudName} from "@/components/modules/Cruds/New/CrudForm/CrudName";
+import {Button} from "@/components/elements/Button";
+import Iconify from "@/components/elements/Iconify";
 
 export const CrudForm = () => {
     const {lang} = useAppSelector(state => state.config)
@@ -30,6 +32,15 @@ export const CrudForm = () => {
                 <CrudName />
                 <AddDynamicField methods={methods}/>
             </div>
+            <Button
+                type="submit"
+                className="mt-4 float-end bg-blue-700 text-white px-5 py-3 gap-1 flex hover:bg-blue-800"
+            >
+                <span>
+                    {dictionary.crud.new.createCrud}
+                </span>
+                <Iconify icon="ph:rocket" />
+            </Button>
         </FormProvider>
     )
 }
