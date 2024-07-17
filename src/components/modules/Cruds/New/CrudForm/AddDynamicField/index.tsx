@@ -87,7 +87,7 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
                                 key={`option-${i}`}
                                 label={option}
                                 onDelete={() => {
-                                    setValue(`fields[${index}].options`, options.filter((_, j) => i !== j))
+                                    setValue(`fields[${index}].options`, (options as string[]).filter((_, j) => i !== j))
                                }}
                             />
                         ))}

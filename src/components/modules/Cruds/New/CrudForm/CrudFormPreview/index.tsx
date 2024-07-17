@@ -19,11 +19,12 @@ export const CrudFormPreview = ({ methods }: CrudFormPreviewProps) => {
     const values = methods.watch()
 
     const fields = useMemo(() => {
-        if (!values || !values.fields) return []
-        return values.fields.filter(field => {
+        if (!values || !values.fields || !values.fields.length) return []
+        type Field = { name: string, type: string, required: boolean | undefined, options: string[] }
+        return values.fields.filter((field: Field) => {
             const { name, type } = field || {}
             return !isNil(name) && !isNil(type)
-        }).map(field => ({
+        }).map((field: Field) => ({
             label: field.name,
             type: field.type,
             required: !!field.required,
