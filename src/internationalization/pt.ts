@@ -36,7 +36,8 @@ export const pt: InternationalizationTexts = {
         placeholder: 'Digite seu nome',
         required: 'Nome é obrigatório',
         shouldInclude3Chars: 'Nome deve incluir pelo menos 3 caracteres',
-        shouldInclude25Chars: 'Nome deve incluir no máximo 25 caracteres'
+        shouldInclude25Chars: 'Nome deve incluir no máximo 25 caracteres',
+        shouldBeUnique: 'Nome do campo deve ser único'
     },
     email: {
         label: 'E-mail',
@@ -69,10 +70,13 @@ export const pt: InternationalizationTexts = {
             text: 'Texto',
             number: 'Número',
             options: 'Opções',
+            autocomplete: 'Autocompletar',
             multipleOptions: 'Opções Múltiplas',
             date: 'Data',
             cpf: 'CPF',
-            cnpj: 'CNPJ'
+            cnpj: 'CNPJ',
+            phone: 'Telefone',
+            radioGroup: 'Grupo de Rádio'
         },
         addNewField: 'Adicionar novo campo',
         fieldOptions: 'Opções',

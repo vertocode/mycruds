@@ -35,6 +35,7 @@ export interface InternationalizationTexts {
         required: string
         shouldInclude3Chars: string
         shouldInclude25Chars: string
+        shouldBeUnique: string
     }
     email: {
         label: string
@@ -69,10 +70,13 @@ export interface InternationalizationTexts {
             text: string
             number: string
             options: string
+            autocomplete: string
             multipleOptions: string
+            phone: string
             date: string
             cpf: string
             cnpj: string
+            radioGroup: string
         }
         new: {
             title: (username: string) => string

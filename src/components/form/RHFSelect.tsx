@@ -11,6 +11,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import FormHelperText from '@mui/material/FormHelperText'
 import Select, { SelectProps } from '@mui/material/Select'
 import TextField, { TextFieldProps } from '@mui/material/TextField'
+import {useEffect} from "react";
 
 // ----------------------------------------------------------------------
 
@@ -124,7 +125,7 @@ export function RHFMultiSelect({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <FormControl sx={sx}>
+        <FormControl sx={sx} fullWidth>
           {label && <InputLabel id={name}> {label} </InputLabel>}
 
           <Select
@@ -143,7 +144,9 @@ export function RHFMultiSelect({
             )}
 
             {options.map((option) => {
-              const selected = field.value.includes(option.value)
+              console.log(field.value, 'value')
+              console.log(option.value, 'option.value')
+              const selected = field.value?.includes(option?.value)
 
               return (
                 <MenuItem key={option.value} value={option.value}>

@@ -1,6 +1,6 @@
 'use client'
 
-import FormProvider, {RHFTextField} from "@/components/form";
+import FormProvider from "@/components/form";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,7 +18,25 @@ export const CrudForm = () => {
     const {lang} = useAppSelector(state => state.config)
     const dictionary = getDictionary(lang)
     const schema = yup.object().shape({
-        name: yup.string().required(dictionary.name.required).min(3, dictionary.name.shouldInclude3Chars).max(25, dictionary.name.shouldInclude25Chars)
+        name: yup.string().required(dictionary.name.required).min(3, dictionary.name.shouldInclude3Chars).max(25, dictionary.name.shouldInclude25Chars),
+        fields: yup.array().of(yup.object().shape({
+           name: yup.string()
+               .required(dictionary.name.required)
+               .min(3, dictionary.name.shouldInclude3Chars)
+               .max(25, dictionary.name.shouldInclude25Chars)
+               .test('unique', dictionary.name.shouldBeUnique, (value, context) => {
+                   if (!context || !context?.from) return true
+                   const [_, objectGroup] = context?.from || {}
+
+                   if (!objectGroup) return true
+                   const { fields } = objectGroup?.value || {}
+                   if (!fields) return true
+
+                   const names = fields?.map((field: any) => field.name)
+                   return names?.filter((name: string) => name === value).length === 1
+               }),
+            options: yup.array().of(yup.string().min(3, dictionary.name.shouldInclude3Chars).max(25, dictionary.name.shouldInclude25Chars))
+        }))
     })
 
     const methods = useForm({

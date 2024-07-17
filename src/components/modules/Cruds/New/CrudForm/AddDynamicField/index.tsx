@@ -36,7 +36,7 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
 
     const DynamicFields = useMemo(() => fields.map((_, index) => {
         const type = watch(`fields[${index}].type`)
-        const showOptionFields = type === 'options' || type === 'multipleOptions'
+        const showOptionFields = [FieldType.OPTIONS, FieldType.MULTIPLE_OPTIONS, FieldType.AUTOCOMPLETE, FieldType.RADIO_GROUP].includes(type)
         if (showOptionFields && !watch(`fields[${index}].options`)) {
             register(`fields[${index}].options`)
             setValue(`fields[${index}].options`, [])
@@ -60,13 +60,20 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
                             <MenuItem value={FieldType.TEXT}>{dictionary.crud.fieldTypes.text}</MenuItem>
                             <MenuItem value={FieldType.NUMBER}>{dictionary.crud.fieldTypes.number}</MenuItem>
                             <MenuItem value={FieldType.OPTIONS}>{dictionary.crud.fieldTypes.options}</MenuItem>
-                            <MenuItem value={FieldType.MULTIPLE_OPTIONS}>{dictionary.crud.fieldTypes.multipleOptions}</MenuItem>
+                            <MenuItem value={FieldType.AUTOCOMPLETE}>{dictionary.crud.fieldTypes.autocomplete}</MenuItem>
                             <MenuItem value={FieldType.DATE}>{dictionary.crud.fieldTypes.date}</MenuItem>
+                            <MenuItem value={FieldType.RADIO_GROUP}>{dictionary.crud.fieldTypes.radioGroup}</MenuItem>
+                            <MenuItem value={FieldType.PHONE}>{dictionary.crud.fieldTypes.phone}</MenuItem>
                             <MenuItem value={FieldType.CPF}>{dictionary.crud.fieldTypes.cpf}</MenuItem>
                             <MenuItem value={FieldType.CNPJ}>{dictionary.crud.fieldTypes.cnpj}</MenuItem>
                         </RHFSelect>
                     </div>
-                    {showOptionFields && <AddOption setValue={(typedOption) => setValue(`fields[${index}].options`, [...options, typedOption])} />}
+                    {showOptionFields && (
+                        <AddOption
+                            setValue={(typedOption) => setValue(`fields[${index}].options`, [...options, typedOption])}
+                            options={options}
+                        />
+                    )}
                     {fields.length > 1 && (
                         <Button
                             className="px-4 mt-2 bg-red-500 hover:bg-red-600 text-white max-h-10"

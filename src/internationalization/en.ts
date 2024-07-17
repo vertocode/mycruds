@@ -55,7 +55,8 @@ export const en: InternationalizationTexts = {
         placeholder: 'Type your name',
         required: 'Name is required',
         shouldInclude3Chars: 'Name must include at least 3 characters',
-        shouldInclude25Chars: 'Name must include at most 25 characters'
+        shouldInclude25Chars: 'Name must include at most 25 characters',
+        shouldBeUnique: 'Field name must be unique'
     },
     crud: {
         crudName: 'Crud Name',
@@ -69,11 +70,14 @@ export const en: InternationalizationTexts = {
         fieldTypes: {
             options: 'Options',
             multipleOptions: 'Multiple Options',
+            autocomplete: 'Autocomplete',
             number: 'Number',
             text: 'Text',
             date: 'Date',
             cpf: 'CPF',
-            cnpj: 'CNPJ'
+            cnpj: 'CNPJ',
+            phone: 'Phone',
+            radioGroup: 'Radio Group'
         },
         fieldOptions: 'Field Options',
         new: {

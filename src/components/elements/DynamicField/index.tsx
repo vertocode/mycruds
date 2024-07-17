@@ -1,5 +1,5 @@
 import {FieldType} from "@/types/Field";
-import {RHFMaskField, RHFMultiSelect, RHFSelect, RHFTextField} from "@/components/form";
+import {RHFAutocomplete, RHFMaskField, RHFMultiSelect, RHFRadioGroup, RHFSelect, RHFTextField} from "@/components/form";
 import {useMemo} from "react";
 import {convertToCamelCase} from "@/utils/string";
 import MenuItem from "@mui/material/MenuItem";
@@ -18,7 +18,7 @@ export const DynamicField = ({ type, label, required, options }: DynamicFieldPro
         name,
         label,
         required
-    }), [])
+    }), [label, name, required])
 
     if (type === FieldType.TEXT) {
         return (
@@ -56,6 +56,16 @@ export const DynamicField = ({ type, label, required, options }: DynamicFieldPro
         )
     }
 
+    if (type === FieldType.AUTOCOMPLETE) {
+        if (!options) {
+            throw new Error('Options are required for field type radio')
+        }
+
+        return (
+            <RHFAutocomplete {...commonProps} options={options.map(option => ({ label: option, value: option }))} />
+        )
+    }
+
     if (type === FieldType.DATE) {
         return (
             <RHFMaskField
@@ -80,6 +90,25 @@ export const DynamicField = ({ type, label, required, options }: DynamicFieldPro
                 {...commonProps}
                 mask="**.***.***/****-**"
             />
+        )
+    }
+
+    if (type === FieldType.PHONE) {
+        return (
+            <RHFMaskField
+                {...commonProps}
+                mask="(**) *****-****"
+            />
+        )
+    }
+
+    if (type === FieldType.RADIO_GROUP) {
+        if (!options) {
+            throw new Error('Options are required for field type radio')
+        }
+
+        return (
+            <RHFRadioGroup options={options.map(option => ({ label: option, value: option }))} {...commonProps} />
         )
     }
 
