@@ -63,6 +63,8 @@ export const pt: InternationalizationTexts = {
         fieldType: 'Tipo do Campo',
         typeNewOption: 'Digite uma nova opção',
         viewCrudForm: 'Visualizar formulário do crud',
+        previewForm: 'Pré-visualizar formulário',
+        noFieldsYetFillToPreview: 'Nenhum campo foi preenchido para existir pré-visualização, por favor preencha para poder visualizar.',
         fieldTypes: {
             text: 'Texto',
             number: 'Número',

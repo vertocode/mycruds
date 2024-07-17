@@ -64,6 +64,8 @@ export const en: InternationalizationTexts = {
         addNewField: 'Add new field',
         viewCrudForm: 'View crud form',
         typeNewOption: 'Type a new option',
+        noFieldsYetFillToPreview: 'No fields yet, fill in the fields to preview the form',
+        previewForm: 'Preview form',
         fieldTypes: {
             options: 'Options',
             multipleOptions: 'Multiple Options',

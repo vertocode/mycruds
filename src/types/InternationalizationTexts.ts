@@ -63,6 +63,8 @@ export interface InternationalizationTexts {
         fieldOptions: string
         typeNewOption: string
         viewCrudForm: string
+        previewForm: string
+        noFieldsYetFillToPreview: string
         fieldTypes: {
             text: string
             number: string

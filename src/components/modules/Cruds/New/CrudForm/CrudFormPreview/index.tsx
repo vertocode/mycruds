@@ -1,16 +1,23 @@
+'use client'
+
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import Iconify from "@/components/elements/Iconify";
 import {useMemo} from "react";
 import {isNil} from "lodash";
 import {DynamicForm} from "@/components/elements/DynamicForm";
+import {useAppSelector} from "@/store/hooks";
+import {getDictionary} from "@/internationalization/dictionary";
 
 interface CrudFormPreviewProps {
     methods: any
 }
 
 export const CrudFormPreview = ({ methods }: CrudFormPreviewProps) => {
+    const {lang} = useAppSelector(state => state.config)
+    const dictionary = getDictionary(lang)
+
     const values = methods.watch()
-    console.log(values, '<<< values')
+
     const fields = useMemo(() => {
         if (!values || !values.fields) return []
         return values.fields.filter(field => {
@@ -32,7 +39,7 @@ export const CrudFormPreview = ({ methods }: CrudFormPreviewProps) => {
                 id="panel1-header"
             >
                 <h2 className="text-gray-600 flex gap-1 items-center">
-                    Pré-visualização do seu formulário
+                    {dictionary.crud.previewForm}
                     <Iconify icon="mdi:table" />
                 </h2>
             </AccordionSummary>
@@ -41,7 +48,7 @@ export const CrudFormPreview = ({ methods }: CrudFormPreviewProps) => {
                     ? <DynamicForm fields={fields} />
                     : (
                     <p>
-                        Nao foi preenchido nenhum campo para existir pré-visualização, por favor preencha para poder visualizar.
+                        {dictionary.crud.noFieldsYetFillToPreview}
                     </p>
                 )}
 
