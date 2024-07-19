@@ -66,7 +66,7 @@ export const CrudForm = () => {
                 }) : [],
                 creatorUserEmail: user?.email || ''
             }
-            await createCrud(crud)
+            const response = await createCrud(crud)
             enqueueSnackbar(dictionary.crud.new.feedback.success, { variant: 'success' })
         } catch (e) {
             console.error(e)

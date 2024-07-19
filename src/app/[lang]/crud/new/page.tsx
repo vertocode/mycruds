@@ -12,7 +12,10 @@ export default function NewCrudPage() {
     const showWelcome = cruds.length === 0 && !wasSubmittedWelcome
 
     return (
-        <div className="mx-10 max-w-full">
+        <div
+            className="mx-10 max-w-full"
+
+        >
             {showWelcome
                 ? <WelcomeContainer onSubmit={() => setWasSubmittedWelcome(true)}/>
                 : <CrudForm />

@@ -1,4 +1,5 @@
 export interface Crud {
+    _id: string
     name: string
     fields: CrudField[]
 }
