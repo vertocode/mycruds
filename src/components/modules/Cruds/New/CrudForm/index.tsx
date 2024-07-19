@@ -10,12 +10,18 @@ import {getDictionary} from "@/internationalization/dictionary";
 import {CrudName} from "@/components/modules/Cruds/New/CrudForm/CrudName";
 import {Button} from "@/components/elements/Button";
 import Iconify from "@/components/elements/Iconify";
-import {useState} from "react";
 import {CrudFormPreview} from "@/components/modules/Cruds/New/CrudForm/CrudFormPreview";
+import {useState} from "react";
+import {createCrud} from "@/api/crud";
+import {useSnackbar} from "@/components/elements/Snackbar";
+import {CrudField} from "@/types/Crud";
 
 export const CrudForm = () => {
-    const [showPreviewForm, setShowPreviewForm] = useState<boolean>(false)
     const {lang} = useAppSelector(state => state.config)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const { enqueueSnackbar } = useSnackbar()
+    const { user } = useAppSelector(state => state.user)
+
     const dictionary = getDictionary(lang)
     const schema = yup.object().shape({
         name: yup.string().required(dictionary.name.required).min(3, dictionary.name.shouldInclude3Chars).max(25, dictionary.name.shouldInclude25Chars),
@@ -44,10 +50,34 @@ export const CrudForm = () => {
         resolver: yupResolver(schema)
     })
 
-    console.log(methods.getValues())
+    const handleSubmit = methods.handleSubmit(async (data) => {
+        setIsLoading(true)
+        try {
+            const crud = {
+                name: data.name,
+                fields: data.fields ? data.fields.map(field => {
+                    const typedField = field as unknown as CrudField
+                    return {
+                        label: typedField.label,
+                        type: typedField?.type,
+                        required: !!typedField?.required,
+                        options: typedField?.options
+                    }
+                }) : [],
+                creatorUserEmail: user?.email || ''
+            }
+            await createCrud(crud)
+            enqueueSnackbar(dictionary.crud.new.feedback.success, { variant: 'success' })
+        } catch (e) {
+            console.error(e)
+            enqueueSnackbar(dictionary.crud.new.feedback.error, { variant: 'error' })
+        } finally {
+            setIsLoading(false)
+        }
+    })
 
     return (
-        <FormProvider methods={methods} className="text-gray-800">
+        <FormProvider methods={methods} className="text-gray-800" onSubmit={handleSubmit}>
             <div className="flex flex-col justify-center mt-10 bg-gray-100">
                 <h1 className="mb-4 text-3xl font-bold text-gray-700">{dictionary.crud.new.createCrud}</h1>
                 <CrudName />
@@ -56,6 +86,7 @@ export const CrudForm = () => {
             </div>
             <Button
                 type="submit"
+                loading={isLoading}
                 className="mt-4 float-end bg-blue-700 text-white px-5 py-3 gap-1 flex hover:bg-blue-800"
             >
                 <span>

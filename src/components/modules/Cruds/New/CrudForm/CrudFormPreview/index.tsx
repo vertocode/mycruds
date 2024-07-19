@@ -7,6 +7,7 @@ import {isNil} from "lodash";
 import {DynamicForm} from "@/components/elements/DynamicForm";
 import {useAppSelector} from "@/store/hooks";
 import {getDictionary} from "@/internationalization/dictionary";
+import {FieldType} from "@/types/Field";
 
 interface CrudFormPreviewProps {
     methods: any
@@ -20,7 +21,7 @@ export const CrudFormPreview = ({ methods }: CrudFormPreviewProps) => {
 
     const fields = useMemo(() => {
         if (!values || !values.fields || !values.fields.length) return []
-        type Field = { name: string, type: string, required: boolean | undefined, options: string[] }
+        type Field = { name: string, type: FieldType, required: boolean | undefined, options: string[] }
         return values.fields.filter((field: Field) => {
             const { name, type } = field || {}
             return !isNil(name) && !isNil(type)

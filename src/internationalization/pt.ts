@@ -87,6 +87,10 @@ export const pt: InternationalizationTexts = {
             createCrud: 'Criar Crud',
             chooseCrudName: 'Primeiro, precisamos de um nome para todo o seu crud. Este nome será exibido em todos os lugares do seu crud como criações, edições e exclusões. Uma dica é escolher um nome que represente bem o que você deseja fazer com este crud, por exemplo administrar clientes poderia ser "Clientes".',
             startFillingFields: 'Agora que você já escolheu um nome para o seu crud, vamos começar a preencher os campos que deseja que este crud tenha. Você pode adicionar quantos campos desejar, basta clicar em "Adicionar Novo Campo" e preencher as informações necessárias de cada campo.',
+            feedback: {
+                success: 'Crud criado com sucesso',
+                error: 'Falha ao criar crud'
+            }
         }
     }
 }

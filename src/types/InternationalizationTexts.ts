@@ -85,6 +85,10 @@ export interface InternationalizationTexts {
             createCrud: string
             chooseCrudName: string
             startFillingFields: string
+            feedback: {
+                success: string
+                error: string
+            }
         }
     }
 }

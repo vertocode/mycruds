@@ -87,6 +87,10 @@ export const en: InternationalizationTexts = {
             createCrud: 'Create Crud',
             chooseCrudName: 'First we need to choose a name for your entire Crud, this name will be used in the creation, editing, and listing form. A tip is to choose a name that represents the entire Crud, for example, if you are creating a Crud to manage clients, you can choose the name "Clients".',
             startFillingFields: 'Now you can start filling in the fields of your Crud, you can add as many fields as you want, just click on the "Add Field" button and fill in the information.',
+feedback: {
+                success: 'Crud created successfully',
+                error: 'Failed to create Crud'
+            }
         }
     }
 }

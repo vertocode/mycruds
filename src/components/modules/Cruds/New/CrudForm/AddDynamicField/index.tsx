@@ -21,7 +21,6 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
     const {lang} = useAppSelector(state => state.config)
     const dictionary = getDictionary(lang)
     const [fields, setFields] = useState<Field[]>([{ status: 'new' }])
-    const [showPreviewModal, setShowPreviewModal] = useState<boolean>(false)
 
     const handleAddField = useCallback(() => {
         setFields(prev => [...prev, { status: 'new' }])
@@ -50,7 +49,7 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
             <div key={`dynamic-field-${index}`} className="w-full">
                 <div className="flex flex-wrap gap-4">
                     <div className="flex mt-2">
-                        <RhfCheckbox name={`fields[${index}].required`} label={dictionary.required}/>
+                        <RhfCheckbox defaultChecked={false} name={`fields[${index}].required`} label={dictionary.required}/>
                     </div>
                     <div className="flex w-72">
                         <RHFTextField fullWidth name={`fields[${index}].name`} label={dictionary.crud.fieldName} required />
