@@ -1,3 +1,4 @@
+'use client'
 import {useAppSelector} from "@/store/hooks";
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
