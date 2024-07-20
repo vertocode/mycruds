@@ -5,7 +5,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {AddDynamicField} from "@/components/modules/Cruds/New/CrudForm/AddDynamicField";
-import {useAppSelector} from "@/store/hooks";
+import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {getDictionary} from "@/internationalization/dictionary";
 import {CrudName} from "@/components/modules/Cruds/New/CrudForm/CrudName";
 import {Button} from "@/components/elements/Button";
@@ -15,11 +15,15 @@ import {useState} from "react";
 import {createCrud} from "@/api/crud";
 import {useSnackbar} from "@/components/elements/Snackbar";
 import {CrudField} from "@/types/Crud";
+import {addCrud} from "@/store/crud/crudSlice";
+import {useRouter} from "next/navigation";
 
 export const CrudForm = () => {
     const {lang} = useAppSelector(state => state.config)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const { enqueueSnackbar } = useSnackbar()
+    const dispatch = useAppDispatch()
+    const router = useRouter()
     const { user } = useAppSelector(state => state.user)
 
     const dictionary = getDictionary(lang)
@@ -67,7 +71,10 @@ export const CrudForm = () => {
                 creatorUserEmail: user?.email || ''
             }
             const response = await createCrud(crud)
+
             enqueueSnackbar(dictionary.crud.new.feedback.success, { variant: 'success' })
+            dispatch(addCrud(response))
+            router.push(`/crud/${response._id}/list`)
         } catch (e) {
             console.error(e)
             enqueueSnackbar(dictionary.crud.new.feedback.error, { variant: 'error' })

@@ -17,9 +17,12 @@ const crudSlice = createSlice({
     reducers: {
         addCrud: (state, action: PayloadAction<Crud>) => {
             state.cruds.push(action.payload)
+        },
+        initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
+            state.cruds = action.payload
         }
     }
 })
 
-export const { addCrud } = crudSlice.actions
+export const { addCrud, initializeCrudList } = crudSlice.actions
 export default crudSlice.reducer
