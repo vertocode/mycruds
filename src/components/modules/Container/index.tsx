@@ -5,7 +5,7 @@ export const Container = ({ children }: { children: React.ReactNode }) => {
     const { cruds } = useAppSelector(state => state.crud)
 
     return (
-        <div style={cruds.length > 0 ? { marginLeft: '300px' } : {}}>
+        <div className={cruds.length ? 'ml-72 mr-10' : 'mx-10'}>
             {children}
         </div>
     )

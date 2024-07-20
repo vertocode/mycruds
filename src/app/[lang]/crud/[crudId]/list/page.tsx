@@ -1,5 +1,9 @@
 'use client'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import TextField from "@mui/material/TextField";
+import {useDebounce} from "@/hooks/useDebounce";
+import {useState} from "react";
+import {useTable} from "@/hooks/useTable";
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -34,19 +38,34 @@ const rows = [
 ];
 
 export default function CrudList() {
+    const [search, setSearch] = useState<string>('')
+    const debouncedSearch = useDebounce(search)
+    const { page, pageSize } = useTable()
+
     return (
-        <div style={{height: 400, width: '100%'}}>
-            {/*<DataGrid*/}
-            {/*    rows={rows}*/}
-            {/*    columns={columns}*/}
-            {/*    initialState={{*/}
-            {/*        pagination: {*/}
-            {/*            paginationModel: {page: 0, pageSize: 5},*/}
-            {/*        },*/}
-            {/*    }}*/}
-            {/*    pageSizeOptions={[5, 10]}*/}
-            {/*    checkboxSelection*/}
-            {/*/>*/}
+        <div className="mt-5 max-h-[1000px]">
+            <div className="bg-white shadow p-5 rounded">
+                <TextField
+                    fullWidth
+                    label="Search"
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>
+            <DataGrid
+                loading={false}
+                rows={rows}
+                density="comfortable"
+                columns={columns}
+                initialState={{
+                    pagination: {
+                        paginationModel: { page, pageSize },
+                    },
+                }}
+                onRowCountChange={(value) => {
+                    console.log('test >>>', value)
+                }}
+                pageSizeOptions={[5, 10]}
+            />
         </div>
     )
 }

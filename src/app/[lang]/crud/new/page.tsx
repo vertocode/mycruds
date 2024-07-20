@@ -13,7 +13,7 @@ export default function NewCrudPage() {
 
     return (
         <div
-            className="mx-10 max-w-full"
+            className="max-w-full"
 
         >
             {showWelcome
