@@ -1,7 +1,10 @@
 export interface InternationalizationTexts {
     delete: string
+    edit: string
+    add: string
     addOption: string
     required: string
+    search: string
     header: {
         user: {
             logout: string
@@ -65,6 +68,8 @@ export interface InternationalizationTexts {
         typeNewOption: string
         viewCrudForm: string
         previewForm: string
+        editCrud: string
+        deleteCrud: string
         noFieldsYetFillToPreview: string
         fieldTypes: {
             text: string
@@ -89,6 +94,9 @@ export interface InternationalizationTexts {
                 success: string
                 error: string
             }
+        },
+        list: {
+            registerNewItem: string
         }
     }
 }

@@ -3,7 +3,7 @@
 import Avatar from '@/assets/avatar.png'
 import Image from 'next/image'
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {logout} from "@/store/user/userSlice";
 import {getDictionary} from "@/internationalization/dictionary";
 import {useRouter} from "next/navigation";
@@ -45,7 +45,7 @@ export const UserButton = () => {
             </div>
             {isMenuOpen && (
                 <div
-                    className="absolute left-0 top-10 w-48 bg-white rounded-md shadow-lg origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    className="absolute left-0 top-10 w-48 bg-white rounded-md shadow-lg origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
                     <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         {options.map((option, optionIndex) => (
                             <span

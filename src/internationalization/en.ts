@@ -2,8 +2,11 @@ import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 
 export const en: InternationalizationTexts = {
     delete: 'Delete',
+    edit: 'Edit',
+    add: 'Add',
     addOption: 'Add option',
     required: 'Required',
+    search: 'Search',
     header: {
         user: {
             logout: 'Logout'
@@ -67,6 +70,8 @@ export const en: InternationalizationTexts = {
         typeNewOption: 'Type a new option',
         noFieldsYetFillToPreview: 'No fields yet, fill in the fields to preview the form',
         previewForm: 'Preview form',
+        deleteCrud: 'Delete Crud',
+        editCrud: 'Edit Crud',
         fieldTypes: {
             options: 'Options',
             multipleOptions: 'Multiple Options',
@@ -87,10 +92,13 @@ export const en: InternationalizationTexts = {
             createCrud: 'Create Crud',
             chooseCrudName: 'First we need to choose a name for your entire Crud, this name will be used in the creation, editing, and listing form. A tip is to choose a name that represents the entire Crud, for example, if you are creating a Crud to manage clients, you can choose the name "Clients".',
             startFillingFields: 'Now you can start filling in the fields of your Crud, you can add as many fields as you want, just click on the "Add Field" button and fill in the information.',
-feedback: {
+            feedback: {
                 success: 'Crud created successfully',
                 error: 'Failed to create Crud'
             }
+        },
+        list: {
+            registerNewItem: 'Register new item'
         }
     }
 }

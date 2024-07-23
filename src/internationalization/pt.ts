@@ -3,7 +3,10 @@ import { InternationalizationTexts } from "@/types/InternationalizationTexts";
 export const pt: InternationalizationTexts = {
     delete: 'Deletar',
     addOption: 'Adicionar Opção',
+    add: 'Adicionar',
+    edit: 'Editar',
     required: 'Campo obrigatório',
+    search: 'Pesquisar',
     header: {
       user: {
           logout: 'Sair'
@@ -65,6 +68,8 @@ export const pt: InternationalizationTexts = {
         typeNewOption: 'Digite uma nova opção',
         viewCrudForm: 'Visualizar formulário do crud',
         previewForm: 'Pré-visualizar formulário',
+        editCrud: 'Editar Crud',
+        deleteCrud: 'Deletar Crud',
         noFieldsYetFillToPreview: 'Nenhum campo foi preenchido para existir pré-visualização, por favor preencha para poder visualizar.',
         fieldTypes: {
             text: 'Texto',
@@ -91,6 +96,9 @@ export const pt: InternationalizationTexts = {
                 success: 'Crud criado com sucesso',
                 error: 'Falha ao criar crud'
             }
+        },
+        list: {
+            registerNewItem: 'Cadastrar novo item'
         }
     }
 }

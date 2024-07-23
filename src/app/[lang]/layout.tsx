@@ -1,6 +1,6 @@
 import Providers from '@/store/provider'
 
-import { Index } from '@/components/modules/Header'
+import { Navbar } from '@/components/modules/Navbar'
 import { PreLoadLanguage } from '@/components/modules/PreLoadLanguage'
 import {AvailableLanguages} from "@/types/Language"
 import {Footer} from "@/components/modules/Footer";
@@ -21,7 +21,7 @@ export default async function RootLayout({ children }: LayoutProps) {
             <Providers>
                 <PreLoadUser />
                 <PreLoadCrud />
-                <Index />
+                <Navbar />
                 {children}
             </Providers>
             <Footer />
