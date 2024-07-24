@@ -5,6 +5,13 @@ export interface Crud {
 }
 
 export interface CrudField {
+    name: string
+    type: string
+    required: boolean
+    options?: string[]
+}
+
+export interface CrudFieldAPI {
     label: string
     type: string
     required: boolean

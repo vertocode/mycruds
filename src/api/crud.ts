@@ -1,10 +1,10 @@
-import { CrudField } from "@/types/Crud";
+import { CrudFieldAPI} from "@/types/Crud";
 import {get, post} from "@/services/axios";
 
 interface CrudParams {
     creatorUserEmail: string
     name: string
-    fields: CrudField[]
+    fields: CrudFieldAPI[]
 }
 
 export const createCrud = async (params: CrudParams) => {

@@ -22,10 +22,7 @@ export default function Menu({ options, children }: MenuProps) {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleMenuItemClick = (
-        option: Option,
-        index: number,
-    ) => {
+    const handleMenuItemClick = (option: Option) => {
         option.action()
         setAnchorEl(null);
     };
@@ -55,7 +52,7 @@ export default function Menu({ options, children }: MenuProps) {
                         key={`menu-option-${option.label}`}
                         disabled={!!option.disabled}
                         selected={!!option.selected}
-                        onClick={() => handleMenuItemClick(option, index)}
+                        onClick={() => handleMenuItemClick(option)}
                     >
                         {option.leftIcon && option.leftIcon}
                         {option.label}

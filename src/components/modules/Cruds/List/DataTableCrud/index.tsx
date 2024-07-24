@@ -4,60 +4,63 @@ import TextField from "@mui/material/TextField";
 import {DataGrid, GridColDef} from "@mui/x-data-grid";
 
 import {dataGrid} from "@/internationalization/pt/dataGrid";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {useDebounce} from "@/hooks/useDebounce";
 import {useTable} from "@/hooks/useTable";
 import {useAppSelector} from "@/store/hooks";
 import {getDictionary} from "@/internationalization/dictionary";
 import {DataTableCell} from "@/components/modules/Cruds/List/DataTableCrud/components/DataTableCell";
 import { styled } from '@mui/material/styles';
+import {useRequest} from "@/hooks/useRequest";
 
-const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
-    {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
-        width: 90,
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
-    {
-        field: 'dropdown',
-        headerName: ''
-    }
-];
 
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-].map(row => ({
-    ...row,
-    dropdown: null
-}))
 
-export const DataTableCrud = () => {
+
+
+interface DataTableCrudProps {
+    crudId: string
+}
+
+export const DataTableCrud = ({ crudId }: DataTableCrudProps) => {
     const [search, setSearch] = useState<string>('')
-    const [isLoading, setIsLoading] = useState<boolean>(false)
     const debouncedSearch = useDebounce(search)
     const { page, pageSize } = useTable()
     const { lang } = useAppSelector(state => state.config)
     const dict = getDictionary(lang)
+    const { data, isLoading } = useRequest({
+        endpoint: `/crud/${crudId}/list`,
+        body: {
+            page,
+            pageSize,
+            search: debouncedSearch
+        }
+    })
 
+    const rows = useMemo(() => (data?.items || [])
+        .filter(item => item.fields.some(field => field?.label && data.fields.some(f => f.label === field.label)))
+        .map(item => ({
+            id: item._id,
+            dropdown: null,
+            ...item.fields.reduce((acc, field) => {
+                acc[field.label] = field.value
+                return acc
+            }, {})
+        })), [data])
+
+    const columns = useMemo(() => (data?.fields || [])
+        .map(field => ({
+            field: field.label,
+            headerName: field.label
+    })).concat({
+            field: 'dropdown',
+            headerName: ''
+        }), [data])
+
+    if (!rows || !columns) return null
+
+
+    console.log('rows', rows)
+    console.log('columns', columns)
     return (
         <div>
             <div className="bg-white shadow p-5 rounded mt-5">

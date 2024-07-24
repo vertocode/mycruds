@@ -11,7 +11,7 @@ export default function CrudList({ params: { crudId } }: CrudListProps) {
     return (
         <div className="mt-5 max-h-[1000px]">
             <ListHeader crudId={crudId} />
-            <DataTableCrud />
+            <DataTableCrud crudId={crudId}/>
         </div>
     )
 }

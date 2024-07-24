@@ -62,7 +62,7 @@ export const CrudForm = () => {
                 fields: data.fields ? data.fields.map(field => {
                     const typedField = field as unknown as CrudField
                     return {
-                        label: typedField.label,
+                        label: typedField.name,
                         type: typedField?.type,
                         required: !!typedField?.required,
                         options: typedField?.options

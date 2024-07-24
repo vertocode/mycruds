@@ -13,7 +13,6 @@ export const DataTableCell = ({ ...props }: GridCellProps) => {
     const { field } = props?.column || {}
     const { lang } = useAppSelector(state => state.config)
     const dict = getDictionary(lang)
-    console.log(props, 'props <<<')
     const [isDropdownOpened, setIsDropdownOpened] = useState<boolean>(false)
 
     if (field === 'dropdown') {
