@@ -11,13 +11,14 @@ import BackupTableIcon from '@mui/icons-material/BackupTable';
 import {getDictionary} from "@/internationalization/dictionary";
 import {useAppSelector} from "@/store/hooks";
 import { useMemo } from "react";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 
 export const Sidebar = () => {
     const { lang } = useAppSelector(state => state.config)
     const { cruds } = useAppSelector(state => state.crud)
     const dictionary = getDictionary(lang)
     const router = useRouter()
+    const pathname = usePathname()
     const predefinedRoutes = [
         {
             name: dictionary.crud.new.createCrud,
@@ -58,7 +59,10 @@ export const Sidebar = () => {
             <List>
                 {crudRoutes.map((crud) => (
                     <ListItem key={`${crud.id}-item-sidebar`} disablePadding onClick={() => router.push(crud.route)}>
-                        <ListItemButton className="hover:bg-gray-200 transition-colors duration-200 rounded">
+                        <ListItemButton
+                            className="hover:bg-gray-200 transition-colors duration-200 rounded"
+                            selected={pathname.includes(crud.id)}
+                        >
                             <ListItemIcon>
                                 {crud.icon}
                             </ListItemIcon>

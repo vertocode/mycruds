@@ -6,13 +6,13 @@ import {getDictionary} from "@/internationalization/dictionary";
 
 interface ListHeaderProps {
     crudId: string
+    crudName: string
 }
 
-export const ListHeader = ({ crudId }: ListHeaderProps) => {
+export const ListHeader = ({ crudId, crudName }: ListHeaderProps) => {
     const router = useRouter()
     const { lang } = useAppSelector(state => state.config)
     const dict = getDictionary(lang)
-    const crudName = 'Crud Mocked'
 
     return (
         <header className="flex justify-between gap-3">
