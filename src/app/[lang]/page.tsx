@@ -1,7 +1,7 @@
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'
 
 export default function Page() {
-  redirect('/signin')
+	redirect('/signin')
 
-  return null
+	return null
 }

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import Cookies from 'js-cookie'
-import type {User} from "@/types/User";
+import type { User } from '@/types/User'
 
 interface UserState {
     user: User | null;
@@ -9,22 +9,22 @@ interface UserState {
 
 
 const initialState: UserState = {
-    user: null
+	user: null
 }
 
 const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        initializeUser: (state, action: PayloadAction<User>) => {
-            state.user = action.payload
-            Cookies.set('user', JSON.stringify(action.payload))
-        },
-        logout: (state) => {
-            state.user = null
-            Cookies.remove('user')
-        }
-    }
+	name: 'user',
+	initialState,
+	reducers: {
+		initializeUser: (state, action: PayloadAction<User>) => {
+			state.user = action.payload
+			Cookies.set('user', JSON.stringify(action.payload))
+		},
+		logout: (state) => {
+			state.user = null
+			Cookies.remove('user')
+		}
+	}
 })
 
 export const { initializeUser, logout } = userSlice.actions

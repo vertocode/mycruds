@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import {Crud} from "@/types/Crud";
+import { Crud } from '@/types/Crud'
 
 interface CrudState {
     cruds: Crud[];
@@ -8,20 +8,20 @@ interface CrudState {
 
 
 const initialState: CrudState = {
-    cruds: []
+	cruds: []
 }
 
 const crudSlice = createSlice({
-    name: 'crud',
-    initialState,
-    reducers: {
-        addCrud: (state, action: PayloadAction<Crud>) => {
-            state.cruds.push(action.payload)
-        },
-        initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
-            state.cruds = action.payload
-        }
-    }
+	name: 'crud',
+	initialState,
+	reducers: {
+		addCrud: (state, action: PayloadAction<Crud>) => {
+			state.cruds.push(action.payload)
+		},
+		initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
+			state.cruds = action.payload
+		}
+	}
 })
 
 export const { addCrud, initializeCrudList } = crudSlice.actions

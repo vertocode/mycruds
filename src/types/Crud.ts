@@ -16,4 +16,21 @@ export interface CrudFieldAPI {
     type: string
     required: boolean
     options?: string[]
+    value?: string | number | boolean
+}
+
+interface CrudFieldItem extends CrudItemAPI {
+    value: string | number | boolean
+}
+
+export interface CrudItemAPI {
+    _id: string
+    crudId: string
+    fields: CrudFieldAPI[]
+}
+
+export interface CrudListAPIResponse {
+    name: string
+    fields: CrudFieldAPI[]
+    items: CrudFieldItem[]
 }

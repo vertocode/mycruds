@@ -4,11 +4,11 @@ import userReducer from './user/userSlice'
 import crudReducer from './crud/crudSlice'
 
 export const store = configureStore({
-    reducer: {
-        config: configReducer,
-        user: userReducer,
-        crud: crudReducer
-    }
+	reducer: {
+		config: configReducer,
+		user: userReducer,
+		crud: crudReducer
+	}
 })
 
 export type RootState = ReturnType<typeof store.getState>;
