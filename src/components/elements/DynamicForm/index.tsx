@@ -14,13 +14,13 @@ interface DynamicFormProps {
         required: boolean
         options?: string[]
     }[]
+	onSubmit: (data: any) => void // TODO: TYPE
 }
 
 
 export const DynamicForm = ({ fields }: DynamicFormProps) => {
 	const methods = useForm()
 
-	console.log('methods inside', methods.watch())
 	return (
 		<FormProvider methods={methods}>
 			<Grid container spacing={3}>

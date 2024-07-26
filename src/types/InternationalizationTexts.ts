@@ -99,4 +99,9 @@ export interface InternationalizationTexts {
             registerNewItem: string
         }
     }
+    crudItem: {
+        create: {
+            title: string
+        }
+    }
 }

@@ -100,5 +100,10 @@ export const en: InternationalizationTexts = {
 		list: {
 			registerNewItem: 'Register new item'
 		}
+	},
+	crudItem: {
+		create: {
+			title: 'Register new item'
+		}
 	}
 }
