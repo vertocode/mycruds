@@ -7,8 +7,6 @@ import FormHelperText from '@mui/material/FormHelperText'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import RadioGroup, { RadioGroupProps } from '@mui/material/RadioGroup'
 
-// ----------------------------------------------------------------------
-
 type Props = RadioGroupProps & {
   name: string;
   options: { label: string; value: any }[];
@@ -42,14 +40,16 @@ export default function RhfRadioGroup({
 						</FormLabel>
 					)}
 
-					<RadioGroup {...field} aria-labelledby={labelledby} row={row} {...other}>
+					<RadioGroup {...field} aria-labelledby={labelledby} row {...other}>
 						{options.map((option) => (
 							<FormControlLabel
+								className="flex flex-wrap"
 								key={option.value}
 								value={option.value}
 								control={<Radio />}
 								label={option.label}
 								sx={{
+									flexDirection: 'row',
 									'&:not(:last-of-type)': {
 										mb: spacing || 0
 									},

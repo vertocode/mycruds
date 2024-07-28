@@ -26,6 +26,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	const { page, pageSize, handlePageSizeChange, handlePageChange } = useTable()
 	const { lang } = useAppSelector(state => state.config)
 	const dict = getDictionary(lang)
+	console.log(debouncedSearch)
 	const { data, isLoading } = useRequest({
 		endpoint: `/crud/${crudId}/list`,
 		body: {

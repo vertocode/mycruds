@@ -108,7 +108,10 @@ export const DynamicField = ({ type, label, required, options }: DynamicFieldPro
 		}
 
 		return (
-			<RHFRadioGroup options={options.map(option => ({ label: option, value: option }))} {...commonProps} />
+			<RHFRadioGroup
+				options={options.map(option => ({ label: option, value: option }))}
+				{...commonProps}
+			/>
 		)
 	}
 
