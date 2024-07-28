@@ -7,6 +7,7 @@ export const en: InternationalizationTexts = {
 	addOption: 'Add option',
 	required: 'Required',
 	search: 'Search',
+	create: 'Create',
 	header: {
 		user: {
 			logout: 'Logout'
@@ -103,7 +104,11 @@ export const en: InternationalizationTexts = {
 	},
 	crudItem: {
 		create: {
-			title: 'Register new item'
+			title: 'Register new item',
+			feedback: {
+				success: 'Item registered successfully',
+				error: 'Failed to register item'
+			}
 		}
 	}
 }

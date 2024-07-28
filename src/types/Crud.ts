@@ -11,16 +11,23 @@ export interface CrudField {
     options?: string[]
 }
 
+export type FieldValue = string | number | boolean
+
 export interface CrudFieldAPI {
     label: string
     type: string
     required: boolean
     options?: string[]
-    value?: string | number | boolean
+    value?: FieldValue
+}
+
+export interface CrudItemFieldAddition {
+    label: string
+    value: FieldValue
 }
 
 interface CrudFieldItem extends CrudItemAPI {
-    value: string | number | boolean
+    value: FieldValue
 }
 
 export interface CrudItemAPI {

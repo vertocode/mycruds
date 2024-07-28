@@ -7,6 +7,7 @@ export const pt: InternationalizationTexts = {
 	edit: 'Editar',
 	required: 'Campo obrigatório',
 	search: 'Pesquisar',
+	create: 'Criar',
 	header: {
 		user: {
 			logout: 'Sair'
@@ -104,6 +105,10 @@ export const pt: InternationalizationTexts = {
 	crudItem: {
 		create: {
 			title: 'Cadastrar novo item',
+			feedback: {
+				success: 'Item cadastrado com sucesso',
+				error: 'Falha ao cadastrar item'
+			}
 		}
 	}
 }

@@ -5,6 +5,7 @@ export interface InternationalizationTexts {
     addOption: string
     required: string
     search: string
+    create: string
     header: {
         user: {
             logout: string
@@ -102,6 +103,10 @@ export interface InternationalizationTexts {
     crudItem: {
         create: {
             title: string
+            feedback: {
+                success: string
+                error: string
+            }
         }
     }
 }
