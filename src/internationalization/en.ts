@@ -109,6 +109,13 @@ export const en: InternationalizationTexts = {
 				success: 'Item registered successfully',
 				error: 'Failed to register item'
 			}
+		},
+		edit: {
+			title: 'Edit item',
+			feedback: {
+				success: 'Item edited successfully',
+				error: 'Failed to edit item'
+			}
 		}
 	}
 }

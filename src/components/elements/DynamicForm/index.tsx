@@ -4,7 +4,7 @@ import { DynamicField } from '@/components/elements/DynamicField'
 import { FieldType } from '@/types/Field'
 import { Grid } from '@mui/material'
 import FormProvider from '@/components/form'
-import { FieldValues, useForm, UseFormHandleSubmit } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 
 export interface DynamicData {
 	[key: string]: FieldValues
@@ -17,6 +17,7 @@ interface DynamicFormProps {
         type: FieldType
         required: boolean
         options?: string[]
+		value?: string | boolean | number
     }[]
 	submitButton?: React.ReactNode
 	onSubmit?: (data: DynamicData) => void
@@ -24,7 +25,14 @@ interface DynamicFormProps {
 
 
 export const DynamicForm = ({ fields, submitButton, onSubmit }: DynamicFormProps) => {
-	const methods = useForm()
+	const methods = useForm({
+		defaultValues: fields.filter(field => field.value).reduce((acc, field) => {
+			return {
+				...acc,
+				[field.label]: field.value
+			}
+		}, {})
+	})
 
 	return (
 		<FormProvider

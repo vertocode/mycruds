@@ -107,6 +107,13 @@ export interface InternationalizationTexts {
                 success: string
                 error: string
             }
+        },
+        edit: {
+            title: string
+            feedback: {
+                success: string
+                error: string
+            }
         }
     }
 }

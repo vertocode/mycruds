@@ -26,6 +26,13 @@ export interface CrudItemFieldAddition {
     value: FieldValue
 }
 
+export interface CrudItemFieldEdition {
+    label: string
+    value: FieldValue
+    required?: boolean
+    type?: string
+}
+
 interface CrudFieldItem extends CrudItemAPI {
     value: FieldValue
 }

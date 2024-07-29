@@ -109,6 +109,13 @@ export const pt: InternationalizationTexts = {
 				success: 'Item cadastrado com sucesso',
 				error: 'Falha ao cadastrar item'
 			}
+		},
+		edit: {
+			title: 'Editar item',
+			feedback: {
+				success: 'Item editado com sucesso',
+				error: 'Falha ao editar item'
+			}
 		}
 	}
 }

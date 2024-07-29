@@ -26,7 +26,6 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	const { page, pageSize, handlePageSizeChange, handlePageChange } = useTable()
 	const { lang } = useAppSelector(state => state.config)
 	const dict = getDictionary(lang)
-	console.log(debouncedSearch)
 	const { data, isLoading } = useRequest({
 		endpoint: `/crud/${crudId}/list`,
 		body: {
@@ -98,7 +97,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 				density="comfortable"
 				columns={columns}
 				slots={{
-					cell: (props) => <DataTableCell {...props} />
+					cell: (props) => <DataTableCell {...props} crudId={crudId}/>
 				}}
 				isRowSelectable={() => false}
 				hideFooter={true}
