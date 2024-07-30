@@ -21,3 +21,9 @@ export const put = async (url: string, data: any) => {
 
 	return res.data
 }
+
+export const deleteRequest = async (url: string) => {
+	const res = await axiosInstance.delete(url)
+
+	return res.data
+}

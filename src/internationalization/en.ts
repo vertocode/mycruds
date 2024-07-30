@@ -116,6 +116,14 @@ export const en: InternationalizationTexts = {
 				success: 'Item edited successfully',
 				error: 'Failed to edit item'
 			}
+		},
+		delete: {
+			title: 'Delete item',
+			description: 'Are you sure you want to delete this item? This action cannot be undone and all data from this item will be lost.',
+			feedback: {
+				success: 'Item deleted successfully',
+				error: 'Failed to delete item'
+			}
 		}
 	}
 }

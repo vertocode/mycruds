@@ -11,11 +11,12 @@ export const useRequest = ({ endpoint, body }: UseRequestProps) => {
 	const searchParamsString = useMemo(() => new URLSearchParams(body).toString(), [body])
 
 	const fetcher = (url: string) => axios.get(url).then(res => res.data)
-	const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}?${searchParamsString}`, fetcher)
+	const { data, error, isLoading, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}?${searchParamsString}`, fetcher)
 
 	return {
 		data,
 		error,
-		isLoading
+		isLoading,
+		mutate
 	}
 }

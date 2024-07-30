@@ -116,6 +116,14 @@ export const pt: InternationalizationTexts = {
 				success: 'Item editado com sucesso',
 				error: 'Falha ao editar item'
 			}
+		},
+		delete: {
+			title: 'Deletar item',
+			description: 'Tem certeza que deseja deletar este item? Esta ação não poderá ser desfeita e todos os dados deste item serão perdidos.',
+			feedback: {
+				success: 'Item deletado com sucesso',
+				error: 'Falha ao deletar item'
+			}
 		}
 	}
 }

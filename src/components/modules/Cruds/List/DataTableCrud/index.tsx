@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField'
 import { DataGrid } from '@mui/x-data-grid'
 
 import { dataGrid } from '@/internationalization/pt/dataGrid'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useTable } from '@/hooks/useTable'
 import { useAppSelector } from '@/store/hooks'
@@ -14,6 +14,9 @@ import { styled } from '@mui/material/styles'
 import { useRequest } from '@/hooks/useRequest'
 import TablePagination from '@mui/material/TablePagination'
 import { CrudFieldAPI, CrudListAPIResponse } from '@/types/Crud'
+import { deleteCrudItem } from '@/api/crud'
+import { useSnackbar } from '@/components/elements/Snackbar'
+import { Spinner } from '@/components/elements/Spinner'
 
 interface DataTableCrudProps {
     crudId: string
@@ -26,7 +29,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	const { page, pageSize, handlePageSizeChange, handlePageChange } = useTable()
 	const { lang } = useAppSelector(state => state.config)
 	const dict = getDictionary(lang)
-	const { data, isLoading } = useRequest({
+	const { data, isLoading, mutate } = useRequest({
 		endpoint: `/crud/${crudId}/list`,
 		body: {
 			page,
@@ -34,6 +37,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 			search: debouncedSearch
 		}
 	})
+	const { enqueueSnackbar } = useSnackbar()
 	const typedData = data as CrudListAPIResponse | undefined
 	const typedFields = typedData?.fields as CrudFieldAPI[] | undefined
 
@@ -72,6 +76,18 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 		})
 	}, [typedFields])
 
+	const handleDeleteItem = useCallback(async (rowId: string) => {
+		const response = await deleteCrudItem(rowId)
+
+		if (!response?._id) {
+			enqueueSnackbar(dict.crudItem.delete.feedback.error, { variant: 'error' })
+			return
+		}
+
+		await mutate()
+		enqueueSnackbar(dict.crudItem.delete.feedback.success, { variant: 'success' })
+	}, [])
+
 	useEffect(() => {
 		if (typedData && onUpdateCrudName) {
 			onUpdateCrudName(typedData.name)
@@ -79,6 +95,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	}, [typedData])
 
 	if (!rows || !columns) return null
+	if (isLoading) return <Spinner />
 
 	return (
 		<div>
@@ -93,11 +110,17 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 				className="bg-white"
 				loading={isLoading}
 				localeText={lang ? dataGrid : {}}
+				key={`data-grid-${JSON.stringify(rows)}`}
 				rows={rows}
 				density="comfortable"
 				columns={columns}
 				slots={{
-					cell: (props) => <DataTableCell {...props} crudId={crudId}/>
+					cell: (props) => <DataTableCell
+						key={`cell-${props.rowId}`}
+						crudId={crudId}
+						onDelete={async () => await handleDeleteItem(props.rowId as string)}
+						{...props}
+					/>
 				}}
 				isRowSelectable={() => false}
 				hideFooter={true}

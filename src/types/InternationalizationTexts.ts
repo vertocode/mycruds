@@ -114,6 +114,14 @@ export interface InternationalizationTexts {
                 success: string
                 error: string
             }
+        },
+        delete: {
+            title: string
+            description: string
+            feedback: {
+                success: string
+                error: string
+            }
         }
     }
 }

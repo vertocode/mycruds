@@ -1,5 +1,5 @@
 import { CrudFieldAPI, CrudItemFieldAddition, CrudItemFieldEdition } from '@/types/Crud'
-import { get, post, put } from '@/services/axios'
+import { get, post, put, deleteRequest } from '@/services/axios'
 
 interface CrudParams {
     creatorUserEmail: string
@@ -25,4 +25,8 @@ export const createCrudItem = async (crudId: string, fields: CrudItemFieldAdditi
 
 export const editCrudItem = async (crudId: string, itemId: string, fields: CrudItemFieldEdition[]) => {
 	return await put(`/crud/${crudId}/item/${itemId}`, { fields })
+}
+
+export const deleteCrudItem = async (itemId: string) => {
+	return await deleteRequest(`/crud/item/${itemId}`)
 }

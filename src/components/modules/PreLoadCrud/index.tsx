@@ -13,6 +13,7 @@ export const PreLoadCrud = () => {
 	const getCrud = async () => {
 		try {
 			if (!user?.email) throw new Error('User email not found')
+			if (crudList.length) return console.log('Crud list already loaded')
 
 			const response = await getCrudList(user.email)
 			setCrudList(response)
