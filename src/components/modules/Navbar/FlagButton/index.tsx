@@ -6,19 +6,28 @@ import USFlag from '@/assets/us-flag.png'
 import { useEffect, useState } from 'react'
 import { AvailableLanguages } from '@/types/Language'
 import { setLang } from '@/store/config/configSlice'
-import { useAppDispatch } from '@/store/hooks'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
 
 export const FlagButton = () => {
-	const [language, setLanguage] = useState<AvailableLanguages>('en')
+	const { lang: currentLang } = useAppSelector(state => state.config)
 	const dispatch = useAppDispatch()
+	const [language, setLanguage] = useState<AvailableLanguages>(currentLang)
 
 	const toggleLanguage = () => {
 		setLanguage(prevLanguage => (prevLanguage === 'en' ? 'pt' : 'en'))
 	}
 
 	useEffect(() => {
-		dispatch(setLang(language))
+		if (currentLang !== language && language) {
+			dispatch(setLang(language))
+		}
 	}, [language])
+
+	useEffect(() => {
+		if (currentLang !== language) {
+			setLanguage(currentLang)
+		}
+	}, [currentLang])
 
 	return (
 		<button

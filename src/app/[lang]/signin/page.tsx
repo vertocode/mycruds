@@ -15,10 +15,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
-	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const lang = useAppSelector(state => state.config.lang)
 	const dictionary = getDictionary(lang)
-
 
 	const schema = Yup.object().shape({
 		email: Yup.string().required(dictionary.email.required).email(dictionary.email.shouldBeValid),
@@ -29,7 +27,7 @@ export default function LoginPage() {
 		mode: 'onChange',
 		resolver: yupResolver(schema)
 	})
-	const { getValues,  handleSubmit } = methods
+	const { getValues,  handleSubmit, formState } = methods
 
 	const dispatch = useAppDispatch()
 
@@ -39,7 +37,6 @@ export default function LoginPage() {
 
 	const onSubmit = handleSubmit(async (e) => {
 		try {
-			setIsLoading(true)
 			const { email, password } = getValues()
 			const response = await login(email, password)
 			if (response?._id) {
@@ -53,8 +50,6 @@ export default function LoginPage() {
 			}
 		} catch (error) {
 			enqueueSnackbar(dictionary.login.feedback.error, { variant: 'error' })
-		} finally {
-			setIsLoading(false)
 		}
 	})
 
@@ -67,7 +62,7 @@ export default function LoginPage() {
 				<FormProvider methods={methods} className="space-y-6" onSubmit={onSubmit}>
 					<RHFTextField name="email" type="email" label={dictionary.email.label} placeholder={dictionary.email.placeholder} required />
 					<RHFTextField name="password" type="password" label={dictionary.password.label} placeholder={dictionary.password.placeholder} required />
-					<Button loading={isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+					<Button loading={formState.isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
 						{dictionary.login.submitLabel}
 					</Button>
 					<p className="text-sm text-gray-600">

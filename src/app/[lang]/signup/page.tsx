@@ -16,7 +16,6 @@ import { useRouter } from 'next/navigation'
 
 
 export default function SignUpPage() {
-	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const lang = useAppSelector(state => state.config.lang)
 	const dictionary = getDictionary(lang)
 	const router = useRouter()
@@ -32,7 +31,7 @@ export default function SignUpPage() {
 		mode: 'onChange',
 		resolver: yupResolver(schema)
 	})
-	const { getValues,  handleSubmit, setError, clearErrors } = methods
+	const { getValues,  handleSubmit, setError, clearErrors, formState } = methods
 
 
 	const dispatch = useAppDispatch()
@@ -40,7 +39,6 @@ export default function SignUpPage() {
 	const { enqueueSnackbar } = useSnackbar()
 
 	const onSubmit = handleSubmit(async (e) => {
-		setIsLoading(true)
 		clearErrors()
 		try {
 			const { email, password, name } = getValues()
@@ -57,8 +55,6 @@ export default function SignUpPage() {
 			}
 		} catch (error) {
 			enqueueSnackbar(dictionary.signUp.feedback.error, { variant: 'error' })
-		} finally {
-			setIsLoading(false)
 		}
 	})
 
@@ -73,7 +69,7 @@ export default function SignUpPage() {
 					<RHFTextField name="email" type="email" label={dictionary.email.label} placeholder={dictionary.email.placeholder} required />
 					<RHFTextField name="password" type="password" label={dictionary.password.label} placeholder={dictionary.password.placeholder} required />
 					<RHFTextField name="repeatPassword" type="password" label={dictionary.repeatPassword.label} placeholder={dictionary.repeatPassword.placeholder} required />
-					<Button loading={isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+					<Button loading={formState.isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
 						{dictionary.signUp.submitLabel}
 					</Button>
 				</FormProvider>
