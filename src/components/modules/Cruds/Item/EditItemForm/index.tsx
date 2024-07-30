@@ -31,7 +31,7 @@ export const EditItemForm = ({ crudId, itemId }: EditItemFormProps) => {
 
 			const response = await editCrudItem(crudId, itemId, fields)
 
-			if (!response.crudId) {
+			if (!response.acknowledged) {
 				throw new Error('Not found crudId in the response.')
 			}
 
