@@ -1,7 +1,7 @@
 'use client'
 
 import TextField from '@mui/material/TextField'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridMenuIcon } from '@mui/x-data-grid'
 
 import { dataGrid } from '@/internationalization/pt/dataGrid'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -9,14 +9,13 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { useTable } from '@/hooks/useTable'
 import { useAppSelector } from '@/store/hooks'
 import { getDictionary } from '@/internationalization/dictionary'
-import { DataTableCell } from '@/components/modules/Cruds/List/DataTableCrud/components/DataTableCell'
 import { styled } from '@mui/material/styles'
 import { useRequest } from '@/hooks/useRequest'
 import TablePagination from '@mui/material/TablePagination'
 import { CrudFieldAPI, CrudListAPIResponse } from '@/types/Crud'
 import { deleteCrudItem } from '@/api/crud'
 import { useSnackbar } from '@/components/elements/Snackbar'
-import { Spinner } from '@/components/elements/Spinner'
+import { DataTableRow } from '@/components/modules/Cruds/List/DataTableCrud/components/DataTableRow'
 
 interface DataTableCrudProps {
     crudId: string
@@ -70,10 +69,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 			field: field.label,
 			headerName: field.label,
 			width: field.label ? (field.label.length * 10) < 100 ? 100 : field.label.length * 10 : 0
-		})).concat({
-			field: 'dropdown',
-			headerName: ''
-		})
+		}))
 	}, [typedFields])
 
 	const handleDeleteItem = useCallback(async (rowId: string) => {
@@ -95,7 +91,6 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	}, [typedData])
 
 	if (!rows || !columns) return null
-	if (isLoading) return <Spinner />
 
 	return (
 		<div>
@@ -115,8 +110,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 				density="comfortable"
 				columns={columns}
 				slots={{
-					cell: (props) => <DataTableCell
-						key={`cell-${props.rowId}`}
+					row: (props) => <DataTableRow
 						crudId={crudId}
 						onDelete={async () => await handleDeleteItem(props.rowId as string)}
 						{...props}
@@ -147,27 +141,15 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 }
 
 export const StyledDataGrid = styled(DataGrid)({
-	'& .MuiDataGrid-cellEmpty': {
-		display: 'none'
-	},
-	'& .MuiDataGrid-filler': {
-		height: '1px'
-	},
-	'& .MuiDataGrid-row': {
-		display: 'flex',
-		justifyContent: 'space-between',
-		borderTop: '1px solid var(--rowBorderColor)'
-	},
 	'& .MuiDataGrid-cell': {
 		borderTop: 'none'
 	},
-	'& [class*="MuiDataGrid-columnHeaderRow"]': {
-		display: 'flex',
-		justifyContent: 'space-between',
-		backgroundColor: 'red'
+	'& .MuiDataGrid-cell::hover': {
+		backgroundColor: 'red !important'
 	},
 	'[class*="MuiDataGrid-columnHeaderRow"]': {
-		backgroundColor: 'rgb(241 245 249) !important'
+		backgroundColor: 'rgb(241 245 249) !important',
+		paddingLeft: '65px !important'
 	},
 	'[role="row"]': {
 		paddingLeft: '1.25rem',
