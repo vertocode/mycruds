@@ -102,6 +102,8 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 				/>
 			</div>
 			<StyledDataGrid
+				disableColumnSorting
+				disableColumnMenu
 				className="bg-white"
 				loading={isLoading}
 				localeText={lang ? dataGrid : {}}
@@ -154,5 +156,8 @@ export const StyledDataGrid = styled(DataGrid)({
 	'[role="row"]': {
 		paddingLeft: '1.25rem',
 		paddingRight: '1.25rem',
+	},
+	'.MuiDataGrid-row:hover': {
+		background: 'none'
 	}
 })
