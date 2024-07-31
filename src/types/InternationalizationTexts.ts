@@ -96,6 +96,14 @@ export interface InternationalizationTexts {
                 error: string
             }
         },
+        delete: {
+            title: string
+            description: string
+            feedback: {
+                success: string
+                error: string
+            }
+        },
         list: {
             registerNewItem: string
         }

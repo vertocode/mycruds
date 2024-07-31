@@ -98,6 +98,14 @@ export const en: InternationalizationTexts = {
 				error: 'Failed to create Crud'
 			}
 		},
+		delete: {
+			title: 'Delete Crud',
+			description: 'Are you sure you want to delete this Crud? This action cannot be undone and all data from this Crud will be lost.',
+			feedback: {
+				success: 'Crud deleted successfully',
+				error: 'Failed to delete Crud'
+			}
+		},
 		list: {
 			registerNewItem: 'Register new item'
 		}

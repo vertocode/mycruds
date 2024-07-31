@@ -11,6 +11,10 @@ export const createCrud = async (params: CrudParams) => {
 	return await post('/cruds', params)
 }
 
+export const deleteCrud = async (params: { crudId: string }) => {
+	return await deleteRequest(`/crud/${params.crudId}`)
+}
+
 export const getCrudList = async (userEmail: string) => {
 	return await get('/cruds', { email: userEmail })
 }

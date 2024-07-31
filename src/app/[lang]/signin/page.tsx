@@ -11,7 +11,6 @@ import { login } from '@/api/auth'
 import { useSnackbar } from '@/components/elements/Snackbar'
 import { initializeUser } from '@/store/user/userSlice'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {

@@ -98,6 +98,14 @@ export const pt: InternationalizationTexts = {
 				error: 'Falha ao criar crud'
 			}
 		},
+		delete: {
+			title: 'Deletar crud',
+			description: 'Tem certeza que deseja deletar este crud? Esta ação não poderá ser desfeita e todos os dados deste crud serão perdidos.',
+			feedback: {
+				success: 'Crud deletado com sucesso',
+				error: 'Falha ao deletar crud'
+			}
+		},
 		list: {
 			registerNewItem: 'Cadastrar novo item'
 		}
