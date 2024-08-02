@@ -1,19 +1,14 @@
 'use client'
 
-import {GridMenuIcon, GridRow, GridRowProps} from '@mui/x-data-grid'
+import { GridMenuIcon, GridRow, GridRowProps } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useState } from 'react'
 import { useAppSelector } from '@/store/hooks'
 import { getDictionary } from '@/internationalization/dictionary'
 import { useRouter } from 'next/navigation'
-import Menu from "@/components/elements/Menu";
-import {ConfirmationModal} from "@/components/elements/ConfirmationModal";
-
-interface DataTableCellProps extends GridRowProps {
-	crudId: string
-	onDelete: () => Promise<void>
-}
+import Menu from '@/components/elements/Menu'
+import { ConfirmationModal } from '@/components/elements/ConfirmationModal'
 
 export const DataTableRow = ({ crudId, onDelete, ...props }: GridRowProps) => {
 	const [isOpened, setIsOpened] = useState(false)

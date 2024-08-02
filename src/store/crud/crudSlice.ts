@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { Crud } from '@/types/Crud'
 
 interface CrudState {
@@ -19,8 +19,12 @@ const crudSlice = createSlice({
 			state.cruds.push(action.payload)
 		},
 		editCrud: (state, action: PayloadAction<Crud>) => {
-			const index = state.cruds.findIndex(crud => crud._id === action.payload._id)
-			state.cruds[index] = action.payload
+			state.cruds = state.cruds.map(crud => {
+				if (crud._id === action.payload._id) {
+					return action.payload
+				}
+				return crud
+			})
 		},
 		initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
 			state.cruds = action.payload

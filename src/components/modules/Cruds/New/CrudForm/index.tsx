@@ -92,12 +92,18 @@ export const CrudForm = ({ initialData }: CrudForm) => {
 				if (!initialData) throw new Error('Initial data is required to edit a crud')
 				if (!initialData?._id) throw new Error('Initial data must have an id to edit a crud')
 
-				const response = await editCrud({
+				const payload = {
 					crudId: initialData._id,
 					...crud
-				})
+				}
+
+				const response = await editCrud(payload)
 				enqueueSnackbar(dictionary.crud.edit.feedback.success, { variant: 'success' })
-				dispatch(editCrudSlice(response))
+				dispatch(editCrudSlice({
+					_id: initialData._id,
+					name: crud.name,
+					fields: crud.fields.map(field => ({ ...field, name: field?.label }))
+				}))
 
 				router.push(`/crud/${initialData._id}/list`)
 			} else {
