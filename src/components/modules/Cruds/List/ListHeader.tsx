@@ -53,7 +53,7 @@ export const ListHeader = ({ crudId, crudName }: ListHeaderProps) => {
 					<Button variant="outlined" color="error" onClick={() => setShowDeleteModal(true)}>
 						{dict.crud.deleteCrud}
 					</Button>
-					<Button variant="outlined">
+					<Button variant="outlined" onClick={() => router.push(`/crud/${crudId}/edit`)}>
 						{dict.crud.editCrud}
 					</Button>
 					<Button

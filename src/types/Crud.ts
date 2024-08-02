@@ -5,6 +5,7 @@ export interface Crud {
 }
 
 export interface CrudField {
+    label?: string
     name: string
     type: string
     required: boolean

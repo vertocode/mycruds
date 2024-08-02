@@ -14,17 +14,23 @@ import { CrudFormPreview } from '@/components/modules/Cruds/New/CrudForm/CrudFor
 import { useState } from 'react'
 import { createCrud } from '@/api/crud'
 import { useSnackbar } from '@/components/elements/Snackbar'
-import { CrudField } from '@/types/Crud'
+import { Crud, CrudField } from '@/types/Crud'
 import { addCrud } from '@/store/crud/crudSlice'
 import { useRouter } from 'next/navigation'
 
-export const CrudForm = () => {
+interface CrudForm {
+	initialData?: Crud
+}
+
+export const CrudForm = ({ initialData }: CrudForm) => {
 	const { lang } = useAppSelector(state => state.config)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const { enqueueSnackbar } = useSnackbar()
 	const dispatch = useAppDispatch()
 	const router = useRouter()
 	const { user } = useAppSelector(state => state.user)
+
+	const isEdition = !!initialData
 
 	const dictionary = getDictionary(lang)
 	const schema = yup.object().shape({
@@ -51,7 +57,19 @@ export const CrudForm = () => {
 
 	const methods = useForm({
 		mode: 'onChange',
-		resolver: yupResolver(schema)
+		resolver: yupResolver(schema),
+		defaultValues: {
+			name: initialData?.name || '',
+			fields: initialData?.fields?.map(field => {
+				const typedField = field as unknown as CrudField
+				return {
+					name: typedField?.label,
+					type: typedField?.type,
+					required: !!typedField?.required,
+					options: typedField?.options
+				}
+			}) || []
+		}
 	})
 
 	const handleSubmit = methods.handleSubmit(async (data) => {
@@ -86,10 +104,16 @@ export const CrudForm = () => {
 	return (
 		<FormProvider methods={methods} className="text-gray-800" onSubmit={handleSubmit}>
 			<div className="flex flex-col justify-center mt-10 bg-gray-100">
-				<h1 className="mb-4 text-3xl font-bold text-gray-700">{dictionary.crud.new.createCrud}</h1>
-				<CrudName />
-				<AddDynamicField methods={methods}/>
-				<CrudFormPreview methods={methods}/>
+				<h1 className="mb-4 text-3xl font-bold text-gray-700">
+					{
+						isEdition
+							? dictionary.crud.editCrud
+							: dictionary.crud.new.createCrud
+					}
+				</h1>
+				<CrudName isEdition={isEdition} />
+				<AddDynamicField methods={methods} isEdition={isEdition} />
+				<CrudFormPreview methods={methods} />
 			</div>
 			<Button
 				type="submit"

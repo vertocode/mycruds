@@ -98,6 +98,15 @@ export const pt: InternationalizationTexts = {
 				error: 'Falha ao criar crud'
 			}
 		},
+		edit: {
+			title: 'Editar crud',
+			description: 'Aqui você pode editar o nome do seu crud e adicionar, editar ou excluir campos do seu crud.',
+			editCrud: 'Editar Crud',
+			feedback: {
+				success: 'Crud editado com sucesso',
+				error: 'Falha ao editar crud'
+			}
+		},
 		delete: {
 			title: 'Deletar crud',
 			description: 'Tem certeza que deseja deletar este crud? Esta ação não poderá ser desfeita e todos os dados deste crud serão perdidos.',

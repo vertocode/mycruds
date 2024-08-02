@@ -96,6 +96,15 @@ export interface InternationalizationTexts {
                 error: string
             }
         },
+        edit: {
+            title: string
+            description: string
+            editCrud: string
+            feedback: {
+                success: string
+                error: string
+            }
+        },
         delete: {
             title: string
             description: string

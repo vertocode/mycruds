@@ -98,6 +98,15 @@ export const en: InternationalizationTexts = {
 				error: 'Failed to create Crud'
 			}
 		},
+		edit: {
+			title: 'Edit Crud',
+			description: 'You can edit the name of your Crud and the fields that are part of it, just click on the field you want to edit and change the information.',
+			editCrud: 'Edit Crud',
+			feedback: {
+				success: 'Crud edited successfully',
+				error: 'Failed to edit Crud'
+			}
+		},
 		delete: {
 			title: 'Delete Crud',
 			description: 'Are you sure you want to delete this Crud? This action cannot be undone and all data from this Crud will be lost.',

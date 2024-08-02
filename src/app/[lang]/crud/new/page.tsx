@@ -14,7 +14,6 @@ export default function NewCrudPage() {
 	return (
 		<div
 			className="max-w-full"
-
 		>
 			{showWelcome
 				? <WelcomeContainer onSubmit={() => setWasSubmittedWelcome(true)}/>

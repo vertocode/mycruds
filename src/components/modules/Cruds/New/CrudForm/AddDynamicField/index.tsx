@@ -14,13 +14,14 @@ type Field = {
 
 interface AddDynamicFieldProps {
     methods: any
+	isEdition: boolean
 }
 
-export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
+export const AddDynamicField = ({ methods, isEdition }: AddDynamicFieldProps) => {
 	const { watch, setValue, register, unregister } = methods
 	const { lang } = useAppSelector(state => state.config)
 	const dictionary = getDictionary(lang)
-	const [fields, setFields] = useState<Field[]>([{ status: 'new' }])
+	const [fields, setFields] = useState<Field[]>(isEdition ? watch('fields') : [{ status: 'new' }])
 
 	const handleAddField = useCallback(() => {
 		setFields(prev => [...prev, { status: 'new' }])
@@ -100,9 +101,12 @@ export const AddDynamicField = ({ methods }: AddDynamicFieldProps) => {
 
 	return (
 		<div className="bg-blue-100 text-gray-800 p-5 rounded-2xl">
-			<div className="flex justify-between">
-				<p className="mb-4">{dictionary.crud.new.startFillingFields}</p>
-			</div>
+			{!isEdition && (
+				<div className="flex justify-between">
+					<p className="mb-4">{dictionary.crud.new.startFillingFields}</p>
+				</div>
+			)}
+
 			{DynamicFields}
 			<Button
 				className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white w-full"
