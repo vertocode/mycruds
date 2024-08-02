@@ -12,10 +12,10 @@ import { Button } from '@/components/elements/Button'
 import Iconify from '@/components/elements/Iconify'
 import { CrudFormPreview } from '@/components/modules/Cruds/New/CrudForm/CrudFormPreview'
 import { useState } from 'react'
-import { createCrud } from '@/api/crud'
+import { createCrud, editCrud } from '@/api/crud'
 import { useSnackbar } from '@/components/elements/Snackbar'
 import { Crud, CrudField } from '@/types/Crud'
-import { addCrud } from '@/store/crud/crudSlice'
+import { addCrud, editCrud as editCrudSlice } from '@/store/crud/crudSlice'
 import { useRouter } from 'next/navigation'
 
 interface CrudForm {
@@ -88,14 +88,33 @@ export const CrudForm = ({ initialData }: CrudForm) => {
 				}) : [],
 				creatorUserEmail: user?.email || ''
 			}
-			const response = await createCrud(crud)
+			if (isEdition) {
+				if (!initialData) throw new Error('Initial data is required to edit a crud')
+				if (!initialData?._id) throw new Error('Initial data must have an id to edit a crud')
 
-			enqueueSnackbar(dictionary.crud.new.feedback.success, { variant: 'success' })
-			dispatch(addCrud(response))
-			router.push(`/crud/${response._id}/list`)
+				const response = await editCrud({
+					crudId: initialData._id,
+					...crud
+				})
+				enqueueSnackbar(dictionary.crud.edit.feedback.success, { variant: 'success' })
+				dispatch(editCrudSlice(response))
+
+				router.push(`/crud/${initialData._id}/list`)
+			} else {
+				const response = await createCrud(crud)
+
+				enqueueSnackbar(dictionary.crud.new.feedback.success, { variant: 'success' })
+				dispatch(addCrud(response))
+
+				router.push(`/crud/${response._id}/list`)
+			}
 		} catch (e) {
 			console.error(e)
-			enqueueSnackbar(dictionary.crud.new.feedback.error, { variant: 'error' })
+			if (isEdition) {
+				enqueueSnackbar(dictionary.crud.edit.feedback.error, { variant: 'error' })
+			} else {
+				enqueueSnackbar(dictionary.crud.new.feedback.error, { variant: 'error' })
+			}
 		} finally {
 			setIsLoading(false)
 		}
@@ -121,7 +140,7 @@ export const CrudForm = ({ initialData }: CrudForm) => {
 				className="mt-4 float-end bg-blue-700 text-white px-5 py-3 gap-1 flex hover:bg-blue-800"
 			>
 				<span>
-					{dictionary.crud.new.createCrud}
+					{isEdition ? dictionary.crud.edit.editCrud : dictionary.crud.new.createCrud}
 				</span>
 				<Iconify icon="ph:rocket" />
 			</Button>

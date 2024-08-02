@@ -18,11 +18,15 @@ const crudSlice = createSlice({
 		addCrud: (state, action: PayloadAction<Crud>) => {
 			state.cruds.push(action.payload)
 		},
+		editCrud: (state, action: PayloadAction<Crud>) => {
+			const index = state.cruds.findIndex(crud => crud._id === action.payload._id)
+			state.cruds[index] = action.payload
+		},
 		initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
 			state.cruds = action.payload
 		}
 	}
 })
 
-export const { addCrud, initializeCrudList } = crudSlice.actions
+export const { addCrud, initializeCrudList, editCrud } = crudSlice.actions
 export default crudSlice.reducer

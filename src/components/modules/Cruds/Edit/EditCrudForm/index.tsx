@@ -2,7 +2,7 @@
 
 import { useCrudById } from '@/hooks/useCrudById'
 import { CrudForm } from '@/components/modules/Cruds/New/CrudForm'
-import {Spinner} from "@/components/elements/Spinner";
+import { Spinner } from '@/components/elements/Spinner'
 
 interface EditCrudFormProps {
     crudId: string
@@ -11,7 +11,6 @@ interface EditCrudFormProps {
 export const EditCrudForm = ({ crudId }: EditCrudFormProps) => {
 	const { crud } = useCrudById(crudId)
 
-	console.log(crud, '<<< crud')
 	if (!crud) return <Spinner />
 
 	return (
