@@ -71,6 +71,7 @@ export const pt: InternationalizationTexts = {
 		previewForm: 'Pré-visualizar formulário',
 		editCrud: 'Editar Crud',
 		deleteCrud: 'Deletar Crud',
+		errorGettingCrud: 'Erro ao buscar cruds na sua conta, caso você tenha algum crud, por favor, tente de novo em alguns minutos.',
 		noFieldsYetFillToPreview: 'Nenhum campo foi preenchido para existir pré-visualização, por favor preencha para poder visualizar.',
 		fieldTypes: {
 			text: 'Texto',

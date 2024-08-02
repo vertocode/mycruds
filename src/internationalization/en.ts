@@ -73,6 +73,7 @@ export const en: InternationalizationTexts = {
 		previewForm: 'Preview form',
 		deleteCrud: 'Delete Crud',
 		editCrud: 'Edit Crud',
+		errorGettingCrud: 'Error searching for cruds in your account, if you have any cruds, please try again in a few minutes.',
 		fieldTypes: {
 			options: 'Options',
 			multipleOptions: 'Multiple Options',

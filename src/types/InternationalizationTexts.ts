@@ -72,6 +72,7 @@ export interface InternationalizationTexts {
         editCrud: string
         deleteCrud: string
         noFieldsYetFillToPreview: string
+        errorGettingCrud: string
         fieldTypes: {
             text: string
             number: string

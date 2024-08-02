@@ -22,7 +22,7 @@ export default function SnackbarProvider({ children }: Props) {
 			ref={notistackRef}
 			maxSnack={5}
 			preventDuplicate
-			autoHideDuration={3000}
+			autoHideDuration={5000}
 			TransitionComponent={Collapse}
 			variant="success" // Set default variant
 			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
