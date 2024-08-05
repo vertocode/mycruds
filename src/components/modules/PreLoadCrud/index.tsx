@@ -9,6 +9,7 @@ import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useSnackbar } from '@/components/elements/Snackbar'
 import { getDictionary } from '@/internationalization/dictionary'
+import { setLoaded } from '@/store/config/configSlice'
 
 export const PreLoadCrud = () => {
 	const { user } = useAppSelector(state => state.user)
@@ -27,19 +28,23 @@ export const PreLoadCrud = () => {
 			const response = await getCrudList(user.email)
 			setCrudList(response)
 		} catch (error) {
-			console.error(`Error getting cruds by user email: ${error}`)
 			enqueueSnackbar(dict.crud.errorGettingCrud, { variant: 'error' })
 		} finally {
 			setIsLoading(false)
+			dispatch(setLoaded(true))
 		}
 	}
 
 	useEffect(() => {
 		if (user) {
+			dispatch(setLoaded(false))
+			setIsLoading(true)
 			getCrud()
 		} else {
+			dispatch(setLoaded(true))
 			setIsLoading(false)
 			dispatch(clearCrudList())
+			setCrudList([])
 		}
 	}, [user])
 

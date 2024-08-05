@@ -8,8 +8,12 @@ import { CrudForm } from '@/components/modules/Cruds/New/CrudForm'
 export default function NewCrudPage() {
 	const [wasSubmittedWelcome, setWasSubmittedWelcome] = useState<boolean>(false)
 	const { cruds } = useAppSelector(state => state.crud)
+	const { loaded } = useAppSelector(state => state.config)
+
 
 	const showWelcome = cruds.length === 0 && !wasSubmittedWelcome
+
+	if (!loaded) return null
 
 	return (
 		<div

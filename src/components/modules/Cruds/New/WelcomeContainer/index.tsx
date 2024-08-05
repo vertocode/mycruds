@@ -3,13 +3,11 @@
 import { getDictionary } from '@/internationalization/dictionary'
 import { useAppSelector } from '@/store/hooks'
 import { Button } from '@/components/elements/Button'
-import { useRouter } from 'next/navigation'
 
 export const WelcomeContainer = ({ onSubmit }: { onSubmit: () => void }) => {
 	const user = useAppSelector(state => state.user.user)
 	const lang = useAppSelector(state => state.config.lang)
 	const dictionary = getDictionary(lang)
-	const router = useRouter()
 
 	const { title, description, createNow } = dictionary.crud.new
 

@@ -12,9 +12,11 @@ import { useSnackbar } from '@/components/elements/Snackbar'
 import { initializeUser } from '@/store/user/userSlice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 
 export default function SignUpPage() {
+	const [loading, setLoading] = useState<boolean>(false)
 	const lang = useAppSelector(state => state.config.lang)
 	const dictionary = getDictionary(lang)
 	const router = useRouter()
@@ -37,9 +39,10 @@ export default function SignUpPage() {
 
 	const { enqueueSnackbar } = useSnackbar()
 
-	const onSubmit = handleSubmit(async (e) => {
+	const onSubmit = handleSubmit(async () => {
 		clearErrors()
 		try {
+			setLoading(true)
 			const { email, password, name } = getValues()
 			const response = await register({ email, password, name })
 			if (response?._id) {
@@ -49,11 +52,13 @@ export default function SignUpPage() {
 			} else if (response?.errorCode === 'user_already_exists') {
 				enqueueSnackbar(dictionary.signUp.feedback.userAlreadyExists, { variant: 'error' })
 				setError('email', { message: dictionary.signUp.feedback.userAlreadyExists })
+				setLoading(false)
 			} else {
 				throw new Error(`Unexpected error: ${response}`)
 			}
 		} catch (error) {
 			enqueueSnackbar(dictionary.signUp.feedback.error, { variant: 'error' })
+			setLoading(false)
 		}
 	})
 
@@ -68,7 +73,7 @@ export default function SignUpPage() {
 					<RHFTextField name="email" type="email" label={dictionary.email.label} placeholder={dictionary.email.placeholder} required />
 					<RHFTextField name="password" type="password" label={dictionary.password.label} placeholder={dictionary.password.placeholder} required />
 					<RHFTextField name="repeatPassword" type="password" label={dictionary.repeatPassword.label} placeholder={dictionary.repeatPassword.placeholder} required />
-					<Button loading={formState.isLoading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+					<Button loading={formState.isLoading || loading} type="submit" className="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
 						{dictionary.signUp.submitLabel}
 					</Button>
 				</FormProvider>

@@ -144,8 +144,6 @@ export function RHFMultiSelect({
 						)}
 
 						{options.map((option) => {
-							console.log(field.value, 'value')
-							console.log(option.value, 'option.value')
 							const selected = field.value?.includes(option?.value)
 
 							return (

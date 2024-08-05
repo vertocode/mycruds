@@ -17,6 +17,8 @@ interface ListHeaderProps {
 
 export const ListHeader = ({ crudId, crudName }: ListHeaderProps) => {
 	const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
+	const [createItemRedirectLoading, setCreateItemRedirectLoading] = useState<boolean>(false)
+	const [editItemRedirectLoading, setEditCrudRedirectLoading] = useState<boolean>(false)
 	const router = useRouter()
 	const { lang } = useAppSelector(state => state.config)
 	const { cruds } = useAppSelector(state => state.crud)
@@ -53,12 +55,23 @@ export const ListHeader = ({ crudId, crudName }: ListHeaderProps) => {
 					<Button variant="outlined" color="error" onClick={() => setShowDeleteModal(true)}>
 						{dict.crud.deleteCrud}
 					</Button>
-					<Button variant="outlined" onClick={() => router.push(`/crud/${crudId}/edit`)}>
+					<Button
+						variant="outlined"
+						loading={editItemRedirectLoading}
+						onClick={() => {
+							setEditCrudRedirectLoading(true)
+							router.push(`/crud/${crudId}/edit`)
+						}}
+					>
 						{dict.crud.editCrud}
 					</Button>
 					<Button
 						variant="contained"
-						onClick={() => router.push(`/crud/${crudId}/new`)}
+						loading={createItemRedirectLoading}
+						onClick={() => {
+							setCreateItemRedirectLoading(true)
+							router.push(`/crud/${crudId}/new`)
+						}}
 					>{dict.crud.list.registerNewItem}</Button>
 				</div>
 			</header>

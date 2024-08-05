@@ -10,7 +10,6 @@ export const PreLoadLanguage = () => {
 	const params = useParams()
 
 	useEffect(() => {
-		console.log(params, 'params')
 		if (params?.lang) {
 			store.dispatch(setLang(params.lang as AvailableLanguages))
 		}
