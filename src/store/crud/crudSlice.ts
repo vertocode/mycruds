@@ -28,9 +28,12 @@ const crudSlice = createSlice({
 		},
 		initializeCrudList: (state, action: PayloadAction<Crud[]>) => {
 			state.cruds = action.payload
+		},
+		clearCrudList: (state) => {
+			state.cruds = []
 		}
 	}
 })
 
-export const { addCrud, initializeCrudList, editCrud } = crudSlice.actions
+export const { addCrud, initializeCrudList, editCrud, clearCrudList } = crudSlice.actions
 export default crudSlice.reducer

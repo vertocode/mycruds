@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { initializeCrudList } from '@/store/crud/crudSlice'
+import { clearCrudList, initializeCrudList } from '@/store/crud/crudSlice'
 import { getCrudList } from '@/api/crud'
 import { Crud } from '@/types/Crud'
 import Modal from '@mui/material/Modal'
@@ -39,6 +39,7 @@ export const PreLoadCrud = () => {
 			getCrud()
 		} else {
 			setIsLoading(false)
+			dispatch(clearCrudList())
 		}
 	}, [user])
 
