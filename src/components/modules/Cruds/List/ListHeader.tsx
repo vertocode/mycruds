@@ -50,7 +50,7 @@ export const ListHeader = ({ crudId, crudName }: ListHeaderProps) => {
 	return (
 		<>
 			<header className="flex justify-between gap-3">
-				<h1 className="text-2xl font-bold text-gray-800">{crudName}</h1>
+				<h1 className="font-bold text-gray-800">{crudName} #{crudId}</h1>
 				<div className="flex gap-3">
 					<Button variant="outlined" color="error" onClick={() => setShowDeleteModal(true)}>
 						{dict.crud.deleteCrud}

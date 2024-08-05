@@ -8,6 +8,7 @@ export const pt: InternationalizationTexts = {
 	required: 'Campo obrigatório',
 	search: 'Pesquisar',
 	create: 'Criar',
+	listItems: 'Listagem de Itens',
 	header: {
 		user: {
 			logout: 'Sair'

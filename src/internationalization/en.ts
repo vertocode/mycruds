@@ -8,6 +8,7 @@ export const en: InternationalizationTexts = {
 	required: 'Required',
 	search: 'Search',
 	create: 'Create',
+	listItems: 'Items list',
 	header: {
 		user: {
 			logout: 'Logout'

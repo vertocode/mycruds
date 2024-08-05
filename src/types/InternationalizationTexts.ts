@@ -6,6 +6,7 @@ export interface InternationalizationTexts {
     required: string
     search: string
     create: string
+    listItems: string
     header: {
         user: {
             logout: string
