@@ -5,7 +5,7 @@ import { Button } from '@/components/elements/Button'
 import { useCallback, useMemo, useState } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import Chip from '@mui/material/Chip'
-import { AddOption } from '@/components/modules/Cruds/New/CrudForm/AddDynamicField/Add0ption'
+import { AddOption } from '@/components/modules/Cruds/CrudForm/AddDynamicField/Add0ption'
 import { FieldType } from '@/types/Field'
 
 type Field = {
@@ -28,6 +28,7 @@ export const AddDynamicField = ({ methods, isEdition }: AddDynamicFieldProps) =>
 	}, [])
 
 	const handleRemoveField = useCallback((index: number) => {
+		unregister(`fields[${index}]`)
 		setFields(prev => prev.filter((_, i) => i !== index))
 	}, [])
 

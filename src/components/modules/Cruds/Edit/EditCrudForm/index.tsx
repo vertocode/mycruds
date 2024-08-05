@@ -1,7 +1,7 @@
 'use client'
 
 import { useCrudById } from '@/hooks/useCrudById'
-import { CrudForm } from '@/components/modules/Cruds/New/CrudForm'
+import { CrudForm } from '../../CrudForm'
 import { Spinner } from '@/components/elements/Spinner'
 
 interface EditCrudFormProps {

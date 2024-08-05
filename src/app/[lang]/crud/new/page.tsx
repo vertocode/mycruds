@@ -3,7 +3,7 @@
 import { WelcomeContainer } from '@/components/modules/Cruds/New/WelcomeContainer'
 import { useAppSelector } from '@/store/hooks'
 import { useState } from 'react'
-import { CrudForm } from '@/components/modules/Cruds/New/CrudForm'
+import { CrudForm } from '../../../../components/modules/Cruds/CrudForm'
 
 export default function NewCrudPage() {
 	const [wasSubmittedWelcome, setWasSubmittedWelcome] = useState<boolean>(false)

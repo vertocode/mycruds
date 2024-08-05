@@ -26,7 +26,7 @@ interface DynamicFormProps {
 
 export const DynamicForm = ({ fields, submitButton, onSubmit }: DynamicFormProps) => {
 	const methods = useForm({
-		defaultValues: fields.filter(field => field.value).reduce((acc, field) => {
+		defaultValues: fields.filter(field => field && field?.label && field?.value).reduce((acc, field) => {
 			return {
 				...acc,
 				[field.label]: field.value
@@ -40,7 +40,7 @@ export const DynamicForm = ({ fields, submitButton, onSubmit }: DynamicFormProps
 			onSubmit={onSubmit ? methods.handleSubmit(onSubmit) : () => {}}
 		>
 			<Grid container spacing={3}>
-				{fields.map((field, index) => (
+				{fields.filter(field => field && field?.label).map((field, index) => (
 					<Grid item xs={12} sm={6} md={4} key={`dynamic-field-${index}`}>
 						<DynamicField
 							type={field.type}

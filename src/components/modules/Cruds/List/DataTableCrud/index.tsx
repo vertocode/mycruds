@@ -1,7 +1,7 @@
 'use client'
 
 import TextField from '@mui/material/TextField'
-import { DataGrid, GridMenuIcon } from '@mui/x-data-grid'
+import { DataGrid } from '@mui/x-data-grid'
 
 import { dataGrid } from '@/internationalization/pt/dataGrid'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -65,7 +65,7 @@ export const DataTableCrud = ({ crudId, onUpdateCrudName }: DataTableCrudProps) 
 	const columns = useMemo(() => {
 		if (!typedFields) return []
 
-		return typedFields.map((field: CrudFieldAPI): { headerName: string; field: string; width?: number } => ({
+		return typedFields.filter(field => field && field?.label).map((field: CrudFieldAPI): { headerName: string; field: string; width?: number } => ({
 			field: field.label,
 			headerName: field.label,
 			width: field.label ? (field.label.length * 10) < 100 ? 100 : field.label.length * 10 : 0

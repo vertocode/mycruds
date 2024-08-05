@@ -4,13 +4,13 @@ import FormProvider from '@/components/form'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { AddDynamicField } from '@/components/modules/Cruds/New/CrudForm/AddDynamicField'
+import { AddDynamicField } from '@/components/modules/Cruds/CrudForm/AddDynamicField'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { getDictionary } from '@/internationalization/dictionary'
-import { CrudName } from '@/components/modules/Cruds/New/CrudForm/CrudName'
+import { CrudName } from '@/components/modules/Cruds/CrudForm/CrudName'
 import { Button } from '@/components/elements/Button'
 import Iconify from '@/components/elements/Iconify'
-import { CrudFormPreview } from '@/components/modules/Cruds/New/CrudForm/CrudFormPreview'
+import { CrudFormPreview } from '@/components/modules/Cruds/CrudForm/CrudFormPreview'
 import { useState } from 'react'
 import { createCrud, editCrud } from '@/api/crud'
 import { useSnackbar } from '@/components/elements/Snackbar'
@@ -77,7 +77,7 @@ export const CrudForm = ({ initialData }: CrudForm) => {
 		try {
 			const crud = {
 				name: data.name,
-				fields: data.fields ? data.fields.map(field => {
+				fields: data.fields ? data.fields.filter(field => field && field?.name).map(field => {
 					const typedField = field as unknown as CrudField
 					return {
 						label: typedField.name,
@@ -97,12 +97,12 @@ export const CrudForm = ({ initialData }: CrudForm) => {
 					...crud
 				}
 
-				const response = await editCrud(payload)
+				await editCrud(payload)
 				enqueueSnackbar(dictionary.crud.edit.feedback.success, { variant: 'success' })
 				dispatch(editCrudSlice({
 					_id: initialData._id,
 					name: crud.name,
-					fields: crud.fields.map(field => ({ ...field, name: field?.label }))
+					fields: crud.fields.filter(field => field && field?.label).map(field => ({ ...field, name: field?.label }))
 				}))
 
 				router.push(`/crud/${initialData._id}/list`)
