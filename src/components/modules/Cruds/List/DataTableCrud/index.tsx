@@ -149,7 +149,7 @@ export const StyledDataGrid = styled(DataGrid)({
 	'& .MuiDataGrid-cell::hover': {
 		backgroundColor: 'red !important'
 	},
-	'[class*="MuiDataGrid-columnHeaderRow"]': {
+	'[role="row"]:first-of-type': {
 		backgroundColor: 'rgb(241 245 249) !important',
 		paddingLeft: '65px !important'
 	},
