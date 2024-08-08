@@ -4,9 +4,16 @@
     </a>
 </p>
 
+## Demo
+
+<p align="center" style="display: flex; justify-content: space-between;">
+    <img style="width: 50%" src="https://i.imgur.com/VJ4dGPK.png" target="_blank">
+    <img style="width: 50%" src="https://i.imgur.com/vtVbUTi.png" target="_blank">
+</p>
+
 ## Principal Links
 - [Deployed App 🚀](https://mycruds.vertocode.com)
-- [Video Demo ▶️](#)
+- [Video Demo ▶️](https://www.youtube.com/watch?v=xNJql5M38N8)
 
 ## Introduction
 
